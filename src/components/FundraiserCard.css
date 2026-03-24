@@ -1,0 +1,70 @@
+.fundraiser-card {
+  width: 100%;
+  border-radius: 20px;
+  background: #ffffff;
+
+  border: 1px solid rgba(106, 239, 159, 0.6);
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: linear-gradient(180deg, #d5c2c2 0%, #f9fff6 100%);
+}
+
+/* ✨ hover — "подъём" */
+.fundraiser-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(106, 239, 159, 0.25);
+}
+
+/* ссылка на всю карточку */
+.fundraiser-card-link {
+  display: block;
+  padding: 20px;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+/* доступность */
+.fundraiser-card-link:focus-visible {
+  outline: 3px solid #6aef9f;
+  outline-offset: -3px;
+}
+
+/* картинка */
+.fundraiser-card-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+
+  border-radius: 14px;
+  display: block;
+
+  transition: transform 0.3s ease;
+}
+
+/* лёгкий zoom при наведении */
+.fundraiser-card:hover .fundraiser-card-image {
+  transform: scale(1.03);
+}
+
+/* заголовок */
+.fundraiser-card-title {
+  margin: 18px 0 0;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  color: #2f2f2f;
+
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+/* hover на текст */
+.fundraiser-card:hover .fundraiser-card-title {
+  color: #2f8f57;
+}
+

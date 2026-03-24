@@ -1,0 +1,142 @@
+:root {
+    --color-background: #f4f5ed;
+    --color-accent: #6aef9f;
+    --color-accent-dark: #43d97d;
+    --color-text: #1f2a1f;
+    --color-surface: #f4ebeb;
+    --color-border: #6aef9f;
+    --color-shadow: rgba(31, 42, 31, 0.08);
+    --main-gradient: linear-gradient(180deg, #e4dbdb 0%, #f9fff6 100%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Rubik', Arial, Helvetica, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+.site-wrapper {
+    min-height: 100vh;
+    background:
+        linear-gradient(to bottom, #efefe8 0%, #f9fae3 100%);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 32px;
+    background: linear-gradient(180deg, #f0ecec 0%, #ffffff 100%);
+    border-bottom: 2px solid var(--color-border);
+    box-shadow: 0 4px 14px var(--color-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.logo-link:hover {
+    transform: translateY(-3px);
+    filter: drop-shadow(0 6px 10px rgba(106, 239, 159, 0.4));
+}
+
+.nav-logo {
+    height: 70px;
+    width: auto;
+    display: block;
+
+    transition: transform 0.25s ease, opacity 0.3s ease;
+}
+
+.logo-link:hover .nav-logo {
+    transform: scale(1.05);
+    opacity: 0.95;
+}
+
+.logo-link {
+    cursor: pointer;
+}
+
+.nav-logo {
+    height: 70px;
+    width: auto;
+    display: block;
+}
+
+.nav-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 130px;
+    padding: 12px 20px;
+    border: 2px solid var(--color-border);
+    border-radius: 999px;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-button:hover {
+    background-color: var(--color-accent);
+    box-shadow: 0 6px 14px rgba(106, 239, 159, 0.35);
+    transform: translateY(-1px);
+}
+
+.nav-button:focus-visible {
+    outline: 3px solid var(--color-accent-dark);
+    outline-offset: 3px;
+}
+
+.page-content {
+    padding: 24px 32px;
+}
+
+/* Можно чуть по-разному выделить кнопки */
+.login-button {
+    background-color: #f6f7d4;
+}
+
+.profile-button {
+    background-color: #f0fff5;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 14px 18px;
+    }
+
+    .nav-logo {
+        height: 52px;
+    }
+
+    .nav-button {
+        min-width: 110px;
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+
+    .page-content {
+        padding: 20px 16px;
+    }
+}

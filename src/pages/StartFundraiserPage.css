@@ -1,0 +1,54 @@
+:root {
+    --font-family-base: 'Rubik', Arial, Helvetica, sans-serif;
+
+    --color-text: #1f2a1f;
+    --color-text-soft: #555;
+    --color-heading: #243124;
+
+    --color-border: rgba(31, 42, 31, 0.45);
+    --color-border-soft: rgba(31, 42, 31, 0.12);
+
+    --color-surface: #ffffff;
+    --color-shell-bg: linear-gradient(180deg, #ece7e7 0%, #f9fff6 100%);
+    --color-accent: #6aef9f;
+    --color-accent-dark: #43d97d;
+    --color-accent-soft: #eefdf3;
+    --color-accent-button: #f6f7d4;
+
+    --color-success-text: #1f6b38;
+    --color-success-bg: #e8f5e9;
+    --color-error-text: #b42318;
+    --color-error-bg: #ffebee;
+
+    --shadow-shell: 0 10px 22px rgba(31, 42, 31, 0.06);
+    --shadow-hover: 0 8px 18px rgba(106, 239, 159, 0.24);
+
+    --radius-shell: 28px;
+    --radius-panel: 24px;
+    --radius-control: 12px;
+}
+
+.start-fundraiser-page {
+    padding: 24px 16px 40px;
+    font-family: var(--font-family-base);
+}
+
+.start-fundraiser-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+    border: 1.5px solid rgba(31, 42, 31, 0.38);
+    border-radius: var(--radius-shell);
+    background: var(--color-shell-bg);
+    box-shadow: var(--shadow-shell);
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 22px;
+    color: var(--color-heading);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+}

@@ -1,0 +1,223 @@
+.fundraiser-page {
+    padding: 24px 16px 40px;
+}
+
+.fundraiser-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.fundraiser-inner-card {
+    border: 1.5px solid rgba(31, 42, 31, 0.38);
+    border-radius: 28px;
+    background: linear-gradient(180deg, #ece7e7 0%, #f9fff6 100%);
+    padding: 28px;
+    box-shadow: 0 10px 22px rgba(31, 42, 31, 0.06);
+}
+
+.fundraiser-top-row {
+    margin-bottom: 28px;
+}
+
+.fundraiser-back-link {
+    display: inline-block;
+    color: #5e5e5e;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(31, 42, 31, 0.28);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.fundraiser-back-link:hover {
+    color: #2f8f57;
+    border-color: #2f8f57;
+}
+
+.fundraiser-back-link:focus-visible {
+    outline: 3px solid #43d97d;
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.fundraiser-main-content {
+    display: grid;
+    grid-template-columns: 1.5fr minmax(220px, 320px);
+    gap: 40px;
+    align-items: start;
+}
+
+.fundraiser-text-content {
+    min-width: 0;
+}
+
+.fundraiser-title {
+    margin: 0 0 24px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2a1f;
+    line-height: 1.2;
+}
+
+.fundraiser-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.fundraiser-info-list p {
+    margin: 0;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: #243124;
+}
+
+.label {
+    font-weight: 700;
+}
+
+.fundraiser-image-box {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    border: 1.5px solid rgba(31, 42, 31, 0.38);
+    border-radius: 22px;
+    overflow: hidden;
+    background: #ffffff;
+    justify-self: end;
+    box-shadow: 0 8px 18px rgba(31, 42, 31, 0.07);
+}
+
+.fundraiser-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.fundraiser-bottom-row {
+    margin-top: 36px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.fundraiser-action-button {
+    min-width: 120px;
+    height: 42px;
+    border: 2px solid #6aef9f;
+    border-radius: 999px;
+    background: #f6f7d4;
+    color: #1f2a1f;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.fundraiser-action-button:hover {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
+}
+
+.fundraiser-action-button:focus-visible {
+    outline: 3px solid #43d97d;
+    outline-offset: 3px;
+}
+
+.fundraiser-divider {
+    color: #6a6a6a;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.fundraiser-donated-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: 42px;
+    padding: 0 16px;
+    border: 1.5px solid rgba(31, 42, 31, 0.32);
+    border-radius: 999px;
+    background: #ffffff;
+    color: #5f5f5f;
+    font-weight: 500;
+}
+
+.pledges-section {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(31, 42, 31, 0.14);
+}
+
+.pledges-title {
+    margin: 0 0 14px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2a1f;
+}
+
+.pledges-list {
+    margin: 0;
+    padding-left: 20px;
+    color: #243124;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.no-pledges,
+.fundraiser-status-message {
+    font-size: 1rem;
+    color: #444;
+}
+
+@media (max-width: 900px) {
+    .fundraiser-main-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .fundraiser-image-box {
+        justify-self: start;
+        max-width: 280px;
+    }
+
+    .fundraiser-bottom-row {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .fundraiser-page {
+        padding: 16px 12px 28px;
+    }
+
+    .fundraiser-shell {
+        padding: 10px;
+    }
+
+    .fundraiser-inner-card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    .fundraiser-title {
+        font-size: 1.6rem;
+    }
+
+    .fundraiser-info-list p {
+        font-size: 1rem;
+    }
+
+    .fundraiser-image-box {
+        max-width: 100%;
+    }
+}

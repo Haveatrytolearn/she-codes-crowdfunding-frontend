@@ -1,0 +1,83 @@
+.homepage {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Header */
+.page-title {
+  margin: 0 0 16px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Top block */
+.start-fundraiser {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Block with button */
+.start-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 20px;
+  border: 2px solid #6aef9f;
+  border-radius: 16px;
+  background: #f7f2f2;
+}
+
+.start-box {
+  background: #ffffff;
+  border: 2px solid #6aef9f;
+  box-shadow: 0 6px 14px rgba(106, 239, 159, 0.15);
+}
+
+/* Text */
+.start-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Button "+" */
+.start-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  border: 2px solid #6aef9f;
+
+  background: #f6f7d4;
+  color: #1f2a1f;
+
+  font-size: 1.6rem;
+  font-weight: bold;
+
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.start-button:hover {
+  background: #6aef9f;
+  transform: scale(1.05);
+}
+
+.start-button:focus-visible {
+  outline: 3px solid #43d97d;
+  outline-offset: 3px;
+}
+
+/* Card's List */
+.fundraiser-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
