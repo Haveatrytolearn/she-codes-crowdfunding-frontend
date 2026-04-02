@@ -2,10 +2,10 @@
     --color-background: #f4f5ed;
     --color-accent: #6aef9f;
     --color-accent-dark: #43d97d;
-    --color-text: #1f2a1f;
+    --color-text: #041208;
     --color-surface: #f4ebeb;
-    --color-border: #6aef9f;
-    --color-shadow: rgba(31, 42, 31, 0.08);
+    --color-border: rgba(106, 239, 159, 0.75);
+    --color-shadow: rgba(31, 42, 31, 0.06);
     --main-gradient: linear-gradient(180deg, #e4dbdb 0%, #f9fff6 100%);
 }
 
@@ -15,15 +15,14 @@
 
 body {
     margin: 0;
-    font-family: 'Rubik', Arial, Helvetica, sans-serif;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
     background-color: var(--color-background);
     color: var(--color-text);
 }
 
 .site-wrapper {
     min-height: 100vh;
-    background:
-        linear-gradient(to bottom, #efefe8 0%, #f9fae3 100%);
+    background: linear-gradient(to bottom, #efefe8 0%, #f9fae3 100%);
 }
 
 .navbar {
@@ -31,10 +30,12 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    padding: 18px 32px;
-    background: linear-gradient(180deg, #f0ecec 0%, #ffffff 100%);
-    border-bottom: 2px solid var(--color-border);
-    box-shadow: 0 4px 14px var(--color-shadow);
+    padding: 16px 32px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid rgba(106, 239, 159, 0.45);
+    box-shadow: 0 2px 10px var(--color-shadow);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -44,41 +45,32 @@ body {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
+    cursor: pointer;
     transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .logo-link:hover {
-    transform: translateY(-3px);
-    filter: drop-shadow(0 6px 10px rgba(106, 239, 159, 0.4));
+    transform: translateY(-2px);
+    filter: drop-shadow(0 4px 8px rgba(106, 239, 159, 0.22));
 }
 
 .nav-logo {
-    height: 70px;
+    height: 68px;
     width: auto;
     display: block;
-
-    transition: transform 0.25s ease, opacity 0.3s ease;
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .logo-link:hover .nav-logo {
-    transform: scale(1.05);
-    opacity: 0.95;
-}
-
-.logo-link {
-    cursor: pointer;
-}
-
-.nav-logo {
-    height: 70px;
-    width: auto;
-    display: block;
+    transform: scale(1.03);
+    opacity: 0.97;
 }
 
 .nav-actions {
     margin-left: auto;
     display: flex;
     align-items: center;
+    gap: 12px;
 }
 
 .nav-button {
@@ -87,24 +79,41 @@ body {
     justify-content: center;
     min-width: 130px;
     padding: 12px 20px;
-    border: 2px solid var(--color-border);
-    border-radius: 999px;
-    background-color: var(--color-background);
-    color: var(--color-text);
     text-decoration: none;
-    font-weight: 600;
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    font-weight: 700;
     font-size: 1rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    color: var(--color-text);
+
+    border: 1.5px solid rgba(106, 239, 159, 0.42);
+    border-radius: 999px;
+    background-color: rgba(240, 255, 245, 0.96);
+
+    /* вот главная мягкая тень вокруг кнопки */
+    box-shadow:
+        0 2px 8px rgba(31, 42, 31, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.45) inset,
+        0 0 12px rgba(106, 239, 159, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .nav-button:hover {
-    background-color: var(--color-accent);
-    box-shadow: 0 6px 14px rgba(106, 239, 159, 0.35);
+    background-color: #effff4;
+    border-color: rgba(106, 239, 159, 0.72);
+    box-shadow:
+        0 4px 12px rgba(31, 42, 31, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+        0 0 16px rgba(106, 239, 159, 0.28);
     transform: translateY(-1px);
 }
 
 .nav-button:focus-visible {
-    outline: 3px solid var(--color-accent-dark);
+    outline: 3px solid rgba(67, 217, 125, 0.35);
     outline-offset: 3px;
 }
 
@@ -112,26 +121,49 @@ body {
     padding: 24px 32px;
 }
 
-/* Можно чуть по-разному выделить кнопки */
 .login-button {
     background-color: #f6f7d4;
 }
 
 .profile-button {
-    background-color: #f0fff5;
+    background: linear-gradient(180deg, #edf4ed 0%, #e7f0e8 100%);
+    border-color: rgba(143, 161, 145, 0.72);
+    color: #2f3a2f;
+    font-weight: 800;
+
+    box-shadow:
+        0 2px 8px rgba(31, 42, 31, 0.06),
+        0 0 0 1px rgba(236, 243, 237, 0.95) inset,
+        0 0 14px rgba(188, 215, 193, 0.28);
+}
+
+.profile-button:hover {
+    background: linear-gradient(180deg, #f2f7f2 0%, #eaf3eb 100%);
+    border-color: rgba(132, 154, 136, 0.95);
+
+    box-shadow:
+        0 4px 12px rgba(31, 42, 31, 0.08),
+        0 0 0 1px rgba(238, 245, 239, 1) inset,
+        0 0 18px rgba(188, 215, 193, 0.38);
+}
+
+.profile-button:focus-visible {
+    outline: 3px solid rgba(188, 215, 193, 0.6);
+    outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
     .navbar {
-        padding: 14px 18px;
+        padding: 12px 18px;
+        gap: 16px;
     }
 
     .nav-logo {
-        height: 52px;
+        height: 54px;
     }
 
     .nav-button {
-        min-width: 110px;
+        min-width: 108px;
         padding: 10px 16px;
         font-size: 0.95rem;
     }

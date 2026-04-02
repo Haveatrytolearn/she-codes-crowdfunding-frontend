@@ -1,6 +1,18 @@
 async function getFundraiser(fundraiserId) {
-  const url = `${import.meta.env.VITE_API_URL}/fundraisers/${fundraiserId}`;
-  const response = await fetch(url, { method: "GET" });
+  const token = window.localStorage.getItem("token");
+  const url = `${import.meta.env.VITE_API_URL}/fundraisers/${fundraiserId}/`;
+
+  const headers = {};
+
+  if (token) {
+    headers.Authorization = `Token ${token}`;
+  }
+
+
+  const response = await fetch(url, {
+  method: "GET",
+  headers,
+});
 
   if (!response.ok) {
     const fallbackError = `Error fetching fundraiser with id ${fundraiserId}`;

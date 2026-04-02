@@ -98,8 +98,16 @@
     display: block;
 }
 
-.fundraiser-bottom-row {
+.fundraiser-actions-block {
     margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+}
+
+.fundraiser-bottom-row,
+.fundraiser-owner-actions-row {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -107,29 +115,8 @@
     flex-wrap: wrap;
 }
 
-.fundraiser-action-button {
-    min-width: 120px;
-    height: 42px;
-    border: 2px solid #6aef9f;
-    border-radius: 999px;
-    background: #f6f7d4;
-    color: #1f2a1f;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.fundraiser-action-button:hover {
-    transform: translateY(-2px);
-    background: #6aef9f;
-    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
-}
-
-.fundraiser-action-button:focus-visible {
-    outline: 3px solid #43d97d;
-    outline-offset: 3px;
+.fundraiser-owner-actions-row {
+    width: 100%;
 }
 
 .fundraiser-divider {
@@ -138,23 +125,225 @@
     font-weight: 500;
 }
 
-.fundraiser-donated-pill {
+.fundraiser-action-button,
+.fundraiser-donated-pill,
+.fundraiser-edit-button,
+.fundraiser-save-button,
+.fundraiser-cancel-button,
+.fundraiser-delete-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 150px;
-    height: 42px;
-    padding: 0 16px;
-    border: 1.5px solid rgba(31, 42, 31, 0.32);
+    min-width: 170px;
+    height: 46px;
+    padding: 0 18px;
     border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.fundraiser-action-button {
+    border: 2px solid #6aef9f;
+    background: #f6f7d4;
+    color: #1f2a1f;
+}
+
+.fundraiser-action-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
+}
+
+.fundraiser-action-button:focus-visible,
+.fundraiser-donated-pill:focus-visible,
+.fundraiser-edit-button:focus-visible,
+.fundraiser-save-button:focus-visible,
+.fundraiser-cancel-button:focus-visible,
+.fundraiser-delete-button:focus-visible {
+    outline: 3px solid rgba(67, 217, 125, 0.45);
+    outline-offset: 3px;
+}
+
+.fundraiser-action-button:disabled {
+    background: #e3e3e3;
+    border-color: #cfcfcf;
+    color: #747474;
+    cursor: not-allowed;
+    opacity: 1;
+    box-shadow: none;
+    transform: none;
+}
+
+.fundraiser-donated-pill {
+    border: 1.5px solid rgba(31, 42, 31, 0.32);
     background: #ffffff;
     color: #5f5f5f;
     font-weight: 500;
+    cursor: not-allowed;
+    opacity: 0.72;
+}
+
+.fundraiser-donated-pill.active {
+    background: #eefdf3;
+    border: 2px solid #6aef9f;
+    color: #1f2a1f;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.fundraiser-donated-pill.active:hover {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
+}
+
+.fundraiser-donated-pill:disabled {
+    cursor: not-allowed;
+}
+
+.fundraiser-edit-button,
+.fundraiser-save-button {
+    border: 2px solid #6aef9f;
+    background: #f6f7d4;
+    color: #1f2a1f;
+}
+
+.fundraiser-edit-button:hover:not(:disabled),
+.fundraiser-save-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
+}
+
+.fundraiser-cancel-button {
+    border: 1.5px solid rgba(31, 42, 31, 0.32);
+    background: #ffffff;
+    color: #384438;
+}
+
+.fundraiser-cancel-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #f3f3f3;
+    box-shadow: 0 8px 14px rgba(31, 42, 31, 0.08);
+}
+
+.fundraiser-delete-button {
+    border: 2px solid #e28787;
+    background: #fff8f8;
+    color: #9c3d3d;
+}
+
+.fundraiser-delete-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #ffe5e5;
+    box-shadow: 0 8px 16px rgba(226, 135, 135, 0.22);
+}
+
+.fundraiser-delete-button:focus-visible {
+    outline-color: rgba(217, 122, 122, 0.4);
+}
+
+.fundraiser-edit-button:disabled,
+.fundraiser-save-button:disabled,
+.fundraiser-cancel-button:disabled,
+.fundraiser-delete-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.fundraiser-status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 92px;
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-left: 6px;
+}
+
+.fundraiser-status-badge.open {
+    background: #eefdf3;
+    color: #1f6a3a;
+    border: 1.5px solid #7ce49f;
+}
+
+.fundraiser-status-badge.closed {
+    background: #fff3f3;
+    color: #9a3c3c;
+    border: 1.5px solid #e19a9a;
+}
+
+.fundraiser-edit-input,
+.fundraiser-edit-textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid rgba(31, 42, 31, 0.22);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #1f2a1f;
+    font-size: 1rem;
+    font-family: inherit;
+    line-height: 1.5;
+    box-shadow: inset 0 1px 2px rgba(31, 42, 31, 0.03);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.fundraiser-edit-input:focus,
+.fundraiser-edit-textarea:focus {
+    outline: none;
+    border-color: #55d67a;
+    box-shadow: 0 0 0 4px rgba(85, 214, 122, 0.14);
+    background: #ffffff;
+}
+
+.fundraiser-title-input {
+    margin: 0 0 24px;
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.fundraiser-edit-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.fundraiser-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1.5px solid rgba(31, 42, 31, 0.14);
+    font-weight: 500;
+}
+
+.fundraiser-checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #55d67a;
+    cursor: pointer;
 }
 
 .pledges-section {
     margin-top: 36px;
-    padding-top: 20px;
+    padding-top: 22px;
     border-top: 1px solid rgba(31, 42, 31, 0.14);
 }
 
@@ -173,10 +362,124 @@
     font-size: 1rem;
 }
 
-.no-pledges,
-.fundraiser-status-message {
+.no-pledges {
     font-size: 1rem;
+    color: #556055;
+}
+
+.fundraiser-status-message {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #2f3b2f;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(31, 42, 31, 0.12);
+}
+
+.fundraiser-change-log-section {
+    margin-top: 36px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(31, 42, 31, 0.14);
+}
+
+.fundraiser-change-log-list {
+    margin: 0;
+    padding-left: 20px;
+    color: #243124;
+    line-height: 1.8;
+    font-size: 0.98rem;
+}
+
+.fundraiser-change-log-list li {
+    margin-bottom: 10px;
+}
+
+.fundraiser-change-log-list em {
+    color: #4c5a4c;
+    font-style: italic;
+}
+
+.fundraiser-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 42, 31, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 1000;
+}
+
+.fundraiser-modal {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 18px 40px rgba(31, 42, 31, 0.2);
+    border: 1px solid rgba(31, 42, 31, 0.12);
+}
+
+.fundraiser-modal-title {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+    color: #1f2a1f;
+}
+
+.fundraiser-modal-text {
+    margin: 0 0 18px;
     color: #444;
+    line-height: 1.5;
+}
+
+.fundraiser-modal-error {
+    margin: 0 0 16px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #fff3f3;
+    color: #8b2f2f;
+    border-left: 4px solid #c75b5b;
+}
+
+.fundraiser-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.fundraiser-modal-cancel,
+.fundraiser-modal-confirm {
+    min-width: 110px;
+    height: 40px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.98rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.fundraiser-modal-cancel {
+    border: 1.5px solid rgba(31, 42, 31, 0.28);
+    background: #ffffff;
+    color: #333;
+}
+
+.fundraiser-modal-confirm {
+    border: 2px solid #c75b5b;
+    background: #fff3f3;
+    color: #8b2f2f;
+}
+
+.fundraiser-modal-confirm:hover:not(:disabled) {
+    background: #ffdede;
+}
+
+.fundraiser-modal-cancel:disabled,
+.fundraiser-modal-confirm:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
 }
 
 @media (max-width: 900px) {
@@ -190,7 +493,9 @@
         max-width: 280px;
     }
 
-    .fundraiser-bottom-row {
+    .fundraiser-bottom-row,
+    .fundraiser-owner-actions-row,
+    .fundraiser-modal-actions {
         justify-content: flex-start;
     }
 }
@@ -209,15 +514,43 @@
         border-radius: 20px;
     }
 
-    .fundraiser-title {
+    .fundraiser-title,
+    .fundraiser-title-input {
         font-size: 1.6rem;
     }
 
-    .fundraiser-info-list p {
-        font-size: 1rem;
+    .fundraiser-info-list p,
+    .fundraiser-change-log-list,
+    .pledges-list {
+        font-size: 0.98rem;
     }
 
     .fundraiser-image-box {
         max-width: 100%;
+    }
+
+    .fundraiser-bottom-row,
+    .fundraiser-owner-actions-row {
+        justify-content: stretch;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .fundraiser-action-button,
+    .fundraiser-donated-pill,
+    .fundraiser-edit-button,
+    .fundraiser-save-button,
+    .fundraiser-cancel-button,
+    .fundraiser-delete-button {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .fundraiser-divider {
+        display: none;
+    }
+
+    .fundraiser-actions-block {
+        align-items: stretch;
     }
 }

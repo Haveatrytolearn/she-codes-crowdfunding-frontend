@@ -1,0 +1,238 @@
+.deleted-users-page {
+    padding: 24px 16px 40px;
+}
+
+.deleted-users-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.deleted-users-card {
+    border: 1.5px solid rgba(31, 42, 31, 0.38);
+    border-radius: 28px;
+    background: linear-gradient(180deg, #ece7e7 0%, #f9fff6 100%);
+    padding: 28px;
+    box-shadow: 0 10px 22px rgba(31, 42, 31, 0.06);
+}
+
+.deleted-users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.deleted-users-title {
+    margin: 0 0 8px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2a1f;
+    line-height: 1.2;
+}
+
+.deleted-users-subtitle {
+    margin: 0;
+    color: #556055;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.deleted-users-back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 2px solid #6aef9f;
+    background: #f6f7d4;
+    color: #1f2a1f;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.deleted-users-back-link:hover {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
+}
+
+.deleted-users-table-wrapper {
+    overflow-x: auto;
+    border-radius: 20px;
+    border: 1px solid rgba(31, 42, 31, 0.12);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.deleted-users-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 920px;
+}
+
+.deleted-users-table thead {
+    background: rgba(106, 239, 159, 0.14);
+}
+
+.deleted-users-table th {
+    text-align: left;
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1f2a1f;
+    border-bottom: 1px solid rgba(31, 42, 31, 0.12);
+    white-space: nowrap;
+}
+
+.deleted-users-table td {
+    padding: 16px 18px;
+    font-size: 0.98rem;
+    color: #243124;
+    border-bottom: 1px solid rgba(31, 42, 31, 0.1);
+    vertical-align: middle;
+}
+
+.deleted-users-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.deleted-users-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.deleted-users-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 88px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.deleted-users-badge.inactive {
+    background: #fff3f3;
+    color: #9a3c3c;
+    border: 1.5px solid #e19a9a;
+}
+
+.deleted-users-badge.admin {
+    background: #eef6ff;
+    color: #245b9a;
+    border: 1.5px solid #9ec0eb;
+}
+
+.deleted-users-badge.user {
+    background: #f5f5f5;
+    color: #4f5a4f;
+    border: 1.5px solid #d5d5d5;
+}
+
+.deleted-users-restore-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 2px solid #6aef9f;
+    background: #f6f7d4;
+    color: #1f2a1f;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.deleted-users-restore-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
+}
+
+.deleted-users-restore-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.deleted-users-empty-cell {
+    text-align: center;
+    color: #667066;
+    padding: 28px 18px;
+}
+
+.deleted-users-status-message {
+    margin: 0 0 18px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid rgba(31, 42, 31, 0.12);
+    background: rgba(255, 255, 255, 0.75);
+    color: #2f3b2f;
+}
+
+.deleted-users-status-message.error {
+    background: #fff3f3;
+    color: #8b2f2f;
+    border-color: #efc4c4;
+}
+
+.deleted-users-status-message.success {
+    background: #eefdf3;
+    color: #1f6a3a;
+    border-color: #b7e6c5;
+}
+
+.deleted-users-table th:nth-last-child(-n+3),
+.deleted-users-table td:nth-last-child(-n+3) {
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .deleted-users-page {
+        padding: 16px 12px 28px;
+    }
+
+    .deleted-users-shell {
+        padding: 10px;
+    }
+
+    .deleted-users-card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    .deleted-users-title {
+        font-size: 1.6rem;
+    }
+
+    .deleted-users-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .deleted-users-back-link {
+        width: 100%;
+    }
+}

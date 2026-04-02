@@ -46,8 +46,14 @@ function LoginForm() {
                 throw new Error("Backend didn't return user ID. Backend response: " + JSON.stringify(response));
             }
             
-            window.localStorage.setItem("userId", String(userId));
-            console.log("Saved token and userId:", userId);
+            window.localStorage.setItem("user_id", String(userId));
+            window.localStorage.setItem("is_staff", String(response.is_staff));
+
+            console.log("Saved:", {
+            token: response.token,
+            user_id: userId,
+            is_staff: response.is_staff,
+            });
 
             navigate("/");
             window.location.reload();

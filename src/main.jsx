@@ -9,7 +9,11 @@ import RegistrationForm from "./pages/RegistrationForm.jsx";
 import NavBar from "./components/NavBar.jsx";
 import ProfilePage from "./pages/ProfilePage";
 import StartFundraiserPage from "./pages/StartFundraiserPage";
- 
+import CreatePledgePage from "./pages/CreatePledgePage";
+import AdminUsersPage from "./pages/AdminUsersPage.jsx";
+import AdminUserEditPage from "./pages/AdminUserEditPage.jsx";
+import DeletedUsersPage from "./pages/DeletedUsersPage.jsx";
+
 const router = createBrowserRouter([
   {
       path: "/",
@@ -20,7 +24,11 @@ const router = createBrowserRouter([
           { path: "/signup", element: <RegistrationForm /> },
           { path: "/fundraiser/:id", element: <FundraiserPage /> },
           { path: "/profile", element: <ProfilePage />},
-          { path: "/create", element: <StartFundraiserPage />}
+          { path: "/create", element: <StartFundraiserPage />},
+          { path: "/fundraiser/:id/pledge", element: <CreatePledgePage />},
+          { path: "/admin/users", element: <AdminUsersPage /> },
+          { path: "/admin/users/:id", element: <AdminUserEditPage /> },
+          { path: "/admin/users/deleted", element: <DeletedUsersPage /> },
       ],
   },
 ]);

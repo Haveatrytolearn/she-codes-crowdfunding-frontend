@@ -1,0 +1,173 @@
+.admin-user-page {
+    padding: 24px;
+}
+
+.admin-user-card {
+    max-width: 700px;
+    margin: auto;
+    padding: 24px;
+    border-radius: 20px;
+    background: #f9fff6;
+    border: 1px solid #ccc;
+}
+
+.admin-user-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.admin-user-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 2px solid #6aef9f;
+    background: #f6f7d4;
+    color: #1f2a1f;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-user-back-button:hover {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 6px 14px rgba(106, 239, 159, 0.25);
+}
+
+.admin-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.admin-user-form input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.checkbox {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.admin-user-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.admin-user-buttons button {
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+/* Save button */
+.admin-user-buttons button[type="submit"] {
+    background: #f6f7d4;
+    border: 2px solid #6aef9f;
+    color: #1f2a1f;
+}
+
+.admin-user-buttons button[type="submit"]:hover {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.25);
+}
+
+/* Delete button */
+.admin-user-buttons .delete {
+    background: #ffe5e5;
+    color: #a33;
+    border: 2px solid #f3a3a3;
+}
+
+.admin-user-buttons .delete:hover {
+    transform: translateY(-2px);
+    background: #ffcccc;
+    box-shadow: 0 8px 16px rgba(255, 120, 120, 0.25);
+}
+
+.admin-user-checkbox-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #243124;
+}
+
+.admin-user-checkbox-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #55d67a;
+    cursor: pointer;
+}
+
+.admin-user-buttons .delete {
+    background: #ffe5e5;
+    color: #a33;
+}
+
+.admin-user-success {
+    color: green;
+}
+
+.admin-user-error {
+    color: red;
+}
+
+.admin-user-logs {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(31, 42, 31, 0.12);
+}
+
+.admin-user-logs h2 {
+    margin: 0 0 16px;
+    font-size: 1.25rem;
+    color: #1f2a1f;
+}
+
+.admin-user-logs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.admin-user-logs li {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(31, 42, 31, 0.1);
+    line-height: 1.55;
+}
+
+.admin-user-logs li strong {
+    color: #1f2a1f;
+}
+
+.admin-user-logs li em {
+    display: inline-block;
+    margin-top: 6px;
+    color: #5a655a;
+    font-size: 0.95rem;
+}

@@ -24,7 +24,7 @@ function ProfilePage() {
         async function fetchProfile() {
             try {
                 const token = localStorage.getItem("token");
-                const userId = localStorage.getItem("userId");
+                const userId = localStorage.getItem("user_id");
 
                 if (!userId || !token) {
                     setErrorMessage("No user session. Please log in.");
@@ -85,7 +85,7 @@ function ProfilePage() {
         setSuccessMessage("");
         setIsSaving(true);
 
-        const userId = localStorage.getItem("userId");
+        const userId = localStorage.getItem("user_id");
         const token = localStorage.getItem("token");
 
         if (!userId || !token) {
@@ -127,7 +127,7 @@ function ProfilePage() {
 
     function handleLogout() {
         localStorage.removeItem("token");
-        localStorage.removeItem("userId");
+        localStorage.removeItem("user_id");
         navigate("/");
         window.location.reload();
     }
@@ -138,7 +138,7 @@ function ProfilePage() {
 
     async function confirmDeleteAccount() {
         try {
-            const userId = localStorage.getItem("userId");
+            const userId = localStorage.getItem("user_id");
 
             if (!userId) {
                 setErrorMessage("User session not found.");
@@ -148,7 +148,7 @@ function ProfilePage() {
             await deleteUser(userId);
 
             localStorage.removeItem("token");
-            localStorage.removeItem("userId");
+            localStorage.removeItem("user_id");
 
             navigate("/");
             window.location.reload();
