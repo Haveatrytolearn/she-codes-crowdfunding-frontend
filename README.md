@@ -1,16 +1,40 @@
-# React + Vite
+# Crowdfunding Front End
+author: Maria Alistratova
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The name of the project is **Generousource**
+Deployment link (Netlify): https://generousource.netlify.app/
 
-Currently, two official plugins are available:
+#### About the project 
+This project is a web platform that allows registered users to create fundraising initiatives for various causes and support other users’ initiatives through monetary donations. Users can make donations in any amount, provided that the total pledged amount does not exceed the fundraising target.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+#### Intended Audience
+The platform is intended for individuals who wish to raise funds for personal, social, or community causes, as well as for users who want to contribute financially to initiatives created by others.
+It can also be integrated into a company’s internal processes, allowing employees to create fundraising initiatives for their needs.
 
-## React Compiler
+#### Key features
+##### User Features:
+- User Authentication - Registration and Login system with token-based authentication
+- Browse Fundraisers - View all active fundraisers on the homepage, organized by category:
+    - My Fundraisers (created by the user)
+    - Supported Fundraisers (ones the user has pledged to)
+    - Open Fundraisers (available to support)
+    - Completed Fundraisers (reached their funding goal)
+- Create Fundraisers - Users can start new fundraising campaigns with goals and descriptions
+- Make Pledges - Users can donate/pledge money to fundraisers
+- View Fundraiser Details - Full details of each campaign including progress, pledges, and contributions
+- Edit Fundraisers - Owners can modify their fundraiser details
+- Delete Fundraisers - Soft delete functionality (can be restored by admins)
+- Profile Management - Users can view and edit their profile (name, email, username, password)
+- Delete Account - Users can delete their own account
+##### Admin Features:
+- Fundraiser Management - View, search, and manage all fundraisers; restore deleted ones
+- User Management - View, search, and manage all users; restore deleted users
+- Activity Logs - Track system activities
+- Deleted Items Recovery - Restore deleted fundraisers and users
+- Search Functionality - Search fundraisers and users
+##### Technical Features:
+- Modal notifications for user feedback (success, confirmation, error messages)
+- Responsive navigation bar
+- Role-based access control (admin vs regular users)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
