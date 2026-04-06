@@ -9,6 +9,7 @@
   margin: 0 0 16px 0;
   font-size: 1.6rem;
   font-weight: 600;
+  color: #243124;
 }
 
 /* Top block */
@@ -24,16 +25,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 16px 20px;
-  border: 2px solid #6aef9f;
-  border-radius: 16px;
-  background: #f7f2f2;
-}
-
-.start-box {
   background: #ffffff;
   border: 2px solid #6aef9f;
+  border-radius: 16px;
   box-shadow: 0 6px 14px rgba(106, 239, 159, 0.15);
 }
 
@@ -41,6 +36,7 @@
 .start-text {
   font-size: 1.1rem;
   font-weight: 500;
+  color: #243124;
 }
 
 /* Button "+" */
@@ -48,19 +44,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 44px;
   height: 44px;
-
   border-radius: 50%;
   border: 2px solid #6aef9f;
-
   background: #f6f7d4;
   color: #041208;
-
   font-size: 1.6rem;
   font-weight: bold;
-
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -75,9 +66,67 @@
   outline-offset: 3px;
 }
 
-/* Card's List */
+/* Section blocks */
+.homepage-section {
+  margin-bottom: 32px;
+  padding: 24px;
+  border-radius: 24px;
+  border: 1.5px solid rgba(31, 42, 31, 0.18);
+  background: linear-gradient(180deg, #ece7e7 0%, #f9fff6 100%);
+  box-shadow: 0 10px 22px rgba(31, 42, 31, 0.06);
+}
+
+.homepage-section-title {
+  margin: 0 0 20px 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #243124;
+}
+
+/* Optional: slight visual distinction between sections */
+.my-section {
+  border-left: 6px solid #6aef9f;
+}
+
+.supported-section {
+  border-left: 6px solid #b7e6c5;
+}
+
+.open-section {
+  border-left: 6px solid #d7f7e3;
+}
+
+.completed-section {
+  border-left: 6px solid #cfe8d5;
+}
+
+/* Card list */
 .fundraiser-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .homepage {
+    padding: 16px;
+  }
+
+  .homepage-section {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .homepage-section-title {
+    font-size: 1.2rem;
+  }
+
+  .fundraiser-list {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .start-box {
+    padding: 14px 16px;
+  }
 }

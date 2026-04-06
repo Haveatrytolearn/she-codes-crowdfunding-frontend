@@ -1,11 +1,28 @@
-# Crowdfunding Front End
-author: Maria Alistratova
-
-The name of the project is **Generousource**
-Deployment link (Netlify): https://generousource.netlify.app/
+# Generousource – Crowdfunding Platform (Frontend)
+**Author:** Maria Alistratova
+**Live Demo:** https://generousource.netlify.app/
 
 #### About the project 
 This project is a web platform that allows registered users to create fundraising initiatives for various causes and support other users’ initiatives through monetary donations. Users can make donations in any amount, provided that the total pledged amount does not exceed the fundraising target.
+
+#### Screenshots
+##### Homepage (Guest User)
+
+##### Homepage (Authenticated User)
+
+##### Homepage (Admin)
+
+##### Fundraiser Details Page
+
+##### Donation Form
+
+##### Admin – Manage Users
+
+
+##### Admin – Manage Fundraisers
+
+##### Admin – Activity Logs
+
 
 #### Intended Audience
 The platform is intended for individuals who wish to raise funds for personal, social, or community causes, as well as for users who want to contribute financially to initiatives created by others.
@@ -36,5 +53,124 @@ It can also be integrated into a company’s internal processes, allowing employ
 - Modal notifications for user feedback (success, confirmation, error messages)
 - Responsive navigation bar
 - Role-based access control (admin vs regular users)
+
+#### Tech Stack
+
+- **Frontend Framework:** React 19.2.4
+- **Routing:** React Router DOM 7.13.1
+- **Build Tool:** Vite 8.0.0
+- **Styling:** CSS3
+- **Linting:** ESLint 9.39.4
+- **Node Version:** v24.13.1
+
+## Installation
+
+### Prerequisites
+- Node.js and npm installed on your system
+- Backend API running
+
+### Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Haveatrytolearn/she-codes-crowdfunding-frontend.git
+   cd crowdfunding-frontend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:5173`
+
+## Environment Setup
+
+### Create `.env.local` file
+
+Create a `.env.local` file in the root directory of the project with the following configuration:
+
+```env
+VITE_API_URL=https://generousource-9fa74612af46.herokuapp.com
+```
+
+## API Integration
+
+This frontend communicates with a backend API server for all data operations.
+
+### API Endpoints
+
+The application connects to the following API endpoints:
+
+- **Authentication:** `/api-token-auth/` - Login and token generation
+- **Users:** `/users/` - User registration, profile management
+- **Fundraisers:** `/fundraisers/` - CRUD operations for fundraising campaigns
+- **Pledges:** `/pledges/` - Create and manage pledges/donations
+- **Activity Logs:** `/activity-logs/` - Retrieve platform activity records
+- **Restore Operations:** `/fundraisers/restore/`, `/users/restore/` - Recover deleted items
+
+### Frontend Routes
+
+The application uses React Router for client-side navigation.
+
+- `/` - Homepage
+- `/login` - Login page
+- `/signup` - Registration page
+- `/profile` - User profile page
+- `/create` - Create fundraiser page
+- `/fundraiser/:id` - Fundraiser details page
+- `/fundraiser/:id/pledge` - Donation page
+- `/admin/users` - Admin users management
+- `/admin/users/:id` - Admin user details/edit page
+- `/admin/users/deleted` - Deleted users page
+- `/admin/fundraisers` - Admin fundraisers management
+- `/admin/fundraisers/deleted` - Deleted fundraisers page
+- `/activity-logs` - Admin activity logs page
+
+## Project Structure
+
+```
+src/
+├── api/              # API call functions
+│   ├── get-*.js      # GET requests
+│   ├── post-*.js     # POST requests
+│   ├── put-*.js      # PUT/UPDATE requests
+│   └── delete-*.js   # DELETE requests
+├── components/       # Reusable React components
+│   ├── Modal.jsx     # Modal/popup component
+│   ├── NavBar.jsx    # Navigation bar
+│   ├── FundraiserCard.jsx   # Fundraiser display card
+│   ├── PledgeForm.jsx       # Pledge submission form
+│   └── ...
+├── hooks/            # Custom React hooks
+│   ├── use-fundraisers.js
+│   ├── use-fundraiser.js
+│   └── ...
+├── pages/            # Page components
+│   ├── HomePage.jsx
+│   ├── LoginPage.jsx
+│   ├── ProfilePage.jsx
+│   ├── AdminUsersPage.jsx
+│   ├── AdminFundraisersPage.jsx
+│   ├── AdminActivityLogsPage.jsx
+│   └── ...
+├── assets/           # Static assets
+├── main.jsx          # Application entry point
+└── data.js           # Static/sample data
+```
+
+## Notes
+- The UI adapts based on user role (guest, authenticated user, admin)
+- Admin users have extended functionality for managing and restoring data
+- All user interactions use custom modal components for consistent UX
+
+
+
+
+
 
 
