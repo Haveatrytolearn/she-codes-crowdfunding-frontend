@@ -1,16 +1,12 @@
-async function getUsers(showDeleted = false, search = "") {
+async function getActivityLogs(search = "") {
     const token = window.localStorage.getItem("token");
 
     if (!token) {
         throw new Error("You must be logged in as admin.");
     }
 
-    const baseUrl = `${import.meta.env.VITE_API_URL}/users/`;
+    const baseUrl = `${import.meta.env.VITE_API_URL}/activity-logs/`;
     const params = new URLSearchParams();
-
-    if (showDeleted) {
-        params.append("deleted", "true");
-    }
 
     if (search.trim()) {
         params.append("search", search.trim());
@@ -27,7 +23,7 @@ async function getUsers(showDeleted = false, search = "") {
     });
 
     if (!response.ok) {
-        const fallbackError = "Error fetching users";
+        const fallbackError = "Error fetching activity logs";
 
         const data = await response.json().catch(() => {
             throw new Error(fallbackError);
@@ -39,4 +35,4 @@ async function getUsers(showDeleted = false, search = "") {
     return await response.json();
 }
 
-export default getUsers;
+export default getActivityLogs;

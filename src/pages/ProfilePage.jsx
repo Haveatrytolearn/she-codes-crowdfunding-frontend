@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./ProfilePage.css";
 import putUpdateProfile from "../api/put-update-profile";
 import deleteUser from "../api/delete-user";
+import Modal from "../components/Modal";
 
 function ProfilePage() {
     const navigate = useNavigate();
@@ -47,7 +48,9 @@ function ProfilePage() {
 
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => null);
-                    throw new Error(`Failed to fetch profile (${response.status}): ${errorData?.detail || response.statusText}`);
+                    throw new Error(
+                        `Failed to fetch profile (${response.status}): ${errorData?.detail || response.statusText}`
+                    );
                 }
 
                 const data = await response.json();
@@ -94,7 +97,6 @@ function ProfilePage() {
             return;
         }
 
-        // Prepare data without password if it's empty
         const updateData = {
             first_name: profileData.first_name,
             last_name: profileData.last_name,
@@ -102,7 +104,6 @@ function ProfilePage() {
             email: profileData.email,
         };
 
-        // Only include password if it was changed
         if (profileData.password) {
             updateData.password = profileData.password;
         }
@@ -113,7 +114,6 @@ function ProfilePage() {
                 setSuccessMessage("Changes saved successfully!");
                 setIsSaving(false);
 
-                // Clear success message after 3 seconds
                 setTimeout(() => {
                     setSuccessMessage("");
                 }, 3000);
@@ -133,7 +133,7 @@ function ProfilePage() {
     }
 
     function handleDeleteAccount() {
-    setShowDeleteConfirm(true);
+        setShowDeleteConfirm(true);
     }
 
     async function confirmDeleteAccount() {
@@ -160,7 +160,7 @@ function ProfilePage() {
     }
 
     function cancelDeleteAccount() {
-    setShowDeleteConfirm(false);
+        setShowDeleteConfirm(false);
     }
 
     if (isLoading) {
@@ -184,13 +184,31 @@ function ProfilePage() {
                     </h2>
 
                     {successMessage && (
-                        <p className="success-message" style={{ color: "green", marginBottom: "1rem", padding: "0.5rem", backgroundColor: "#e8f5e9", borderRadius: "4px" }}>
+                        <p
+                            className="success-message"
+                            style={{
+                                color: "green",
+                                marginBottom: "1rem",
+                                padding: "0.5rem",
+                                backgroundColor: "#e8f5e9",
+                                borderRadius: "4px",
+                            }}
+                        >
                             ✓ {successMessage}
                         </p>
                     )}
 
                     {errorMessage && (
-                        <p className="error-message" style={{ color: "red", marginBottom: "1rem", padding: "0.5rem", backgroundColor: "#ffebee", borderRadius: "4px" }}>
+                        <p
+                            className="error-message"
+                            style={{
+                                color: "red",
+                                marginBottom: "1rem",
+                                padding: "0.5rem",
+                                backgroundColor: "#ffebee",
+                                borderRadius: "4px",
+                            }}
+                        >
                             ✗ {errorMessage}
                         </p>
                     )}
@@ -271,35 +289,25 @@ function ProfilePage() {
                             >
                                 Delete my account
                             </button>
-                         </div>
-                        {showDeleteConfirm && (
-                            <div className="delete-confirm-box" role="alertdialog" aria-live="polite">
-                                <p className="delete-confirm-text">
-                                    Are you sure you want to delete your account?
-                                </p>
-
-                                <div className="delete-confirm-actions">
-                                    <button
-                                        type="button"
-                                        className="confirm-delete-button"
-                                        onClick={confirmDeleteAccount}
-                                    >
-                                        Yes, delete
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="cancel-delete-button"
-                                        onClick={cancelDeleteAccount}
-                                    >
-                                        Cancel
-                                    </button>
-                                </div>
-                            </div>
-                        )}
+                        </div>
                     </form>
                 </section>
             </section>
+
+            <Modal
+                isOpen={showDeleteConfirm}
+                type="warning"
+                title="Delete account?"
+                message={[
+                    "Are you sure you want to delete your account?",
+                    "Your account can be restored by a site administrator if necessary.",
+                ]}
+                confirmText="Yes, delete"
+                cancelText="Cancel"
+                onConfirm={confirmDeleteAccount}
+                onCancel={cancelDeleteAccount}
+                onClose={cancelDeleteAccount}
+            />
         </main>
     );
 }

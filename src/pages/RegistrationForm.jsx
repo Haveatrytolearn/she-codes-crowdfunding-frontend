@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./RegistrationForm.css";
 import postRegister from "../api/post-register";
+import Modal from "../components/Modal";
 
 function RegistrationForm() {
     const navigate = useNavigate();
@@ -14,6 +15,7 @@ function RegistrationForm() {
     });
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -48,24 +50,28 @@ function RegistrationForm() {
             formData.email,
             formData.password
         )
-            .then((response) => {
-                console.log("Registration successful:", response);
-                alert("Registration successful! Please log in.");
-                navigate("/login");
+             .then(() => {
+                setShowSuccessModal(true);
             })
             .catch((err) => {
-                console.error("Registration error:", err);
                 setError(err.message);
+            })
+            .finally(() => {
                 setIsLoading(false);
             });
     }
 
+    function handleSuccessConfirm() {
+        setShowSuccessModal(false);
+        navigate("/login");
+    }
+
     return (
-        <main className="registration-form">
+        <main className="registration-page">
             <section className="registration-shell">
                 <h2 className="registration-title">Registration form</h2>
 
-                {error && <p className="error-message" style={{ color: "red", marginBottom: "1rem" }}>{error}</p>}
+                {error && <p className="form-error">{error}</p>}
 
                 <form className="registration-form" onSubmit={handleSubmit}>
                     <div className="form-group">
@@ -137,6 +143,19 @@ function RegistrationForm() {
                     </Link>  
                 </div>
             </section>
+
+            <Modal
+                isOpen={showSuccessModal}
+                type="success"
+                title="Registration successful"
+                message={[
+                    "Your account has been created successfully.",
+                    "Please log in.",
+                ]}
+                confirmText="Go to login"
+                onConfirm={handleSuccessConfirm}
+                onClose={() => setShowSuccessModal(false)}
+            />
         </main>
     );
 }

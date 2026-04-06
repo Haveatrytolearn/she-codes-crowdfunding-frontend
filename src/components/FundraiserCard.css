@@ -1,4 +1,5 @@
 .fundraiser-card {
+  position: relative;
   width: 100%;
   border-radius: 20px;
   background: #ffffff;
@@ -68,3 +69,41 @@
   color: #2f8f57;
 }
 
+.fundraiser-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 34px;
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1;
+
+  box-shadow: 0 4px 10px rgba(31, 42, 31, 0.08);
+}
+
+.badge-my {
+  background: #eef6ff;
+  color: #245b9a;
+  border: 1.5px solid #9ec0eb;
+}
+
+.badge-supported {
+  background: #fff8dc;
+  color: #8a6b00;
+  border: 1.5px solid #e7d27a;
+}
+
+.badge-funded {
+  background: #eefdf3;
+  color: #1f6a3a;
+  border: 1.5px solid #7ce49f;
+}

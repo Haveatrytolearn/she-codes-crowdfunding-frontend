@@ -1,8 +1,8 @@
-.deleted-users-page {
+.deleted-fundraisers-page {
     padding: 24px 16px 40px;
 }
 
-.deleted-users-shell {
+.deleted-fundraisers-shell {
     max-width: 1280px;
     margin: 0 auto;
     padding: 20px;
@@ -10,7 +10,7 @@
     background: rgba(255, 255, 255, 0.18);
 }
 
-.deleted-users-card {
+.deleted-fundraisers-card {
     border: 1.5px solid rgba(31, 42, 31, 0.38);
     border-radius: 28px;
     background: linear-gradient(180deg, #ece7e7 0%, #f9fff6 100%);
@@ -18,7 +18,7 @@
     box-shadow: 0 10px 22px rgba(31, 42, 31, 0.06);
 }
 
-.deleted-users-header {
+.deleted-fundraisers-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -27,7 +27,7 @@
     flex-wrap: wrap;
 }
 
-.deleted-users-title {
+.deleted-fundraisers-title {
     margin: 0 0 8px;
     font-size: 2rem;
     font-weight: 700;
@@ -35,18 +35,18 @@
     line-height: 1.2;
 }
 
-.deleted-users-subtitle {
+.deleted-fundraisers-subtitle {
     margin: 0;
     color: #556055;
     font-size: 1rem;
     line-height: 1.5;
 }
 
-.deleted-users-back-link {
+.deleted-fundraisers-back-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 150px;
+    min-width: 170px;
     height: 44px;
     padding: 0 18px;
     border-radius: 999px;
@@ -62,13 +62,13 @@
         background-color 0.2s ease;
 }
 
-.deleted-users-back-link:hover {
+.deleted-fundraisers-back-link:hover {
     transform: translateY(-2px);
     background: #6aef9f;
     box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
 }
 
-.deleted-users-search-row {
+.deleted-fundraisers-search-row {
     margin: 20px 0 12px;
     display: flex;
     align-items: center;
@@ -76,7 +76,7 @@
     flex-wrap: wrap;
 }
 
-.deleted-users-search-input {
+.deleted-fundraisers-search-input {
     flex: 1;
     min-width: 260px;
     max-width: 420px;
@@ -92,7 +92,7 @@
         0 0 0 1px rgba(255, 255, 255, 0.45) inset;
 }
 
-.deleted-users-search-input:focus {
+.deleted-fundraisers-search-input:focus {
     outline: none;
     border-color: rgba(106, 239, 159, 0.85);
     box-shadow:
@@ -100,8 +100,9 @@
         0 0 0 3px rgba(106, 239, 159, 0.18);
 }
 
-.deleted-users-search-button,
-.deleted-users-clear-button {
+.deleted-fundraisers-search-button,
+.deleted-fundraisers-clear-button,
+.deleted-fundraisers-restore-button {
     padding: 12px 18px;
     border: 1.5px solid rgba(106, 239, 159, 0.5);
     border-radius: 999px;
@@ -122,8 +123,9 @@
         border-color 0.2s ease;
 }
 
-.deleted-users-search-button:hover,
-.deleted-users-clear-button:hover {
+.deleted-fundraisers-search-button:hover,
+.deleted-fundraisers-clear-button:hover,
+.deleted-fundraisers-restore-button:hover:not(:disabled) {
     background-color: #effff4;
     border-color: rgba(106, 239, 159, 0.72);
     box-shadow:
@@ -133,39 +135,58 @@
     transform: translateY(-1px);
 }
 
-.deleted-users-search-info {
+.deleted-fundraisers-restore-button.disabled,
+.deleted-fundraisers-restore-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.deleted-fundraisers-search-info,
+.deleted-fundraisers-status-message {
     margin: 0 0 16px;
-    font-family: 'Nunito', Arial, Helvetica, sans-serif;
-    font-size: 0.98rem;
-    color: var(--color-text);
 }
 
-.deleted-users-highlight {
-    background: rgba(106, 239, 159, 0.45);
-    color: inherit;
-    padding: 0 4px;
-    border-radius: 6px;
-    font-weight: 700;
+.deleted-fundraisers-status-message {
+    padding: 14px 16px;
+    border-radius: 14px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid rgba(31, 42, 31, 0.12);
+    background: rgba(255, 255, 255, 0.75);
+    color: #2f3b2f;
 }
 
-.deleted-users-table-wrapper {
+.deleted-fundraisers-status-message.error {
+    background: #fff3f3;
+    color: #8b2f2f;
+    border-color: #efc4c4;
+}
+
+.deleted-fundraisers-status-message.success {
+    background: #eefdf3;
+    color: #1f6a3a;
+    border-color: #b7e6c5;
+}
+
+.deleted-fundraisers-table-wrapper {
     overflow-x: auto;
     border-radius: 20px;
     border: 1px solid rgba(31, 42, 31, 0.12);
     background: rgba(255, 255, 255, 0.8);
 }
 
-.deleted-users-table {
+.deleted-fundraisers-table {
     width: 100%;
     border-collapse: collapse;
     min-width: 920px;
 }
 
-.deleted-users-table thead {
+.deleted-fundraisers-table thead {
     background: rgba(106, 239, 159, 0.14);
 }
 
-.deleted-users-table th {
+.deleted-fundraisers-table th {
     padding: 16px 18px;
     font-size: 0.95rem;
     font-weight: 700;
@@ -175,7 +196,7 @@
     text-align: center;
 }
 
-.deleted-users-table td {
+.deleted-fundraisers-table td {
     padding: 16px 18px;
     font-size: 0.98rem;
     color: #243124;
@@ -183,20 +204,23 @@
     vertical-align: middle;
 }
 
-.deleted-users-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.deleted-users-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.deleted-users-table th:nth-last-child(-n+3),
-.deleted-users-table td:nth-last-child(-n+3) {
+.deleted-fundraisers-table td:nth-child(1),
+.deleted-fundraisers-table td:nth-child(4),
+.deleted-fundraisers-table td:nth-child(5),
+.deleted-fundraisers-table td:nth-child(6),
+.deleted-fundraisers-table td:nth-child(7) {
     text-align: center;
 }
 
-.deleted-users-badge {
+.deleted-fundraisers-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.deleted-fundraisers-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.deleted-fundraisers-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -209,110 +233,69 @@
     white-space: nowrap;
 }
 
-.deleted-users-badge.inactive {
-    background: #fff3f3;
-    color: #9a3c3c;
-    border: 1.5px solid #e19a9a;
+.deleted-fundraisers-badge.active {
+    background: #eefdf3;
+    color: #1f6a3a;
+    border: 1.5px solid #7ce49f;
 }
 
-.deleted-users-badge.admin {
-    background: #eef6ff;
-    color: #245b9a;
-    border: 1.5px solid #9ec0eb;
-}
-
-.deleted-users-badge.user {
+.deleted-fundraisers-badge.inactive {
     background: #f5f5f5;
     color: #4f5a4f;
     border: 1.5px solid #d5d5d5;
 }
 
-.deleted-users-restore-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 100px;
-    height: 38px;
-    padding: 0 14px;
-    border-radius: 999px;
-    border: 2px solid #6aef9f;
-    background: #f6f7d4;
-    color: #1f2a1f;
-    font-size: 0.95rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        background-color 0.2s ease;
-}
-
-.deleted-users-restore-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    background: #6aef9f;
-    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
-}
-
-.deleted-users-restore-button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-}
-
-.deleted-users-empty-cell {
+.deleted-fundraisers-empty-cell {
     text-align: center;
     color: #667066;
     padding: 28px 18px;
 }
 
-.deleted-users-status-message {
-    margin: 0 0 18px;
-    padding: 14px 16px;
-    border-radius: 14px;
-    font-size: 1rem;
-    line-height: 1.5;
-    border: 1px solid rgba(31, 42, 31, 0.12);
-    background: rgba(255, 255, 255, 0.75);
-    color: #2f3b2f;
+.deleted-fundraisers-highlight {
+    background: rgba(106, 239, 159, 0.45);
+    color: inherit;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-weight: 700;
 }
 
-.deleted-users-status-message.error {
-    background: #fff3f3;
-    color: #8b2f2f;
-    border-color: #efc4c4;
+.deleted-fundraisers-table-wrapper {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 560px;
 }
 
-.deleted-users-status-message.success {
-    background: #eefdf3;
-    color: #1f6a3a;
-    border-color: #b7e6c5;
+.deleted-fundraisers-table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: rgba(106, 239, 159, 0.14);
+    box-shadow: 0 1px 0 rgba(31, 42, 31, 0.08);
 }
 
 @media (max-width: 700px) {
-    .deleted-users-page {
+    .deleted-fundraisers-page {
         padding: 16px 12px 28px;
     }
 
-    .deleted-users-shell {
+    .deleted-fundraisers-shell {
         padding: 10px;
     }
 
-    .deleted-users-card {
+    .deleted-fundraisers-card {
         padding: 18px;
         border-radius: 20px;
     }
 
-    .deleted-users-title {
+    .deleted-fundraisers-title {
         font-size: 1.6rem;
     }
 
-    .deleted-users-subtitle {
+    .deleted-fundraisers-subtitle {
         font-size: 0.95rem;
     }
 
-    .deleted-users-back-link {
+    .deleted-fundraisers-back-link {
         width: 100%;
     }
 }

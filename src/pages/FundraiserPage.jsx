@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useFundraiser from "../hooks/use-fundraiser";
 import deleteFundraiser from "../api/delete-fundraiser.js";
 import updateFundraiser from "../api/put-fundraiser.js";
+import Modal from "../components/Modal";
 import "./FundraiserPage.css";
 
 function FundraiserPage() {
@@ -19,6 +20,9 @@ function FundraiserPage() {
     const [isEditing, setIsEditing] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
     const [saveError, setSaveError] = useState("");
+
+    const [showDeleteSuccessModal, setShowDeleteSuccessModal] = useState(false);
+    const [showSaveSuccessModal, setShowSaveSuccessModal] = useState(false);
 
     const [editForm, setEditForm] = useState({
         title: "",
@@ -99,7 +103,7 @@ function FundraiserPage() {
         try {
             await deleteFundraiser(id);
             setShowDeleteModal(false);
-            navigate("/");
+            setShowDeleteSuccessModal(true);
         } catch (err) {
             setDeleteError(err.message);
         } finally {
@@ -131,7 +135,7 @@ function FundraiserPage() {
 
             await updateFundraiser(id, payload);
             setIsEditing(false);
-            window.location.reload();
+            setShowSaveSuccessModal(true);
         } catch (err) {
             setSaveError(err.message);
         } finally {
@@ -149,6 +153,16 @@ function FundraiserPage() {
             is_open: fundraiser.is_open ?? true,
         });
         setIsEditing(false);
+    };
+
+    const handleDeleteSuccessConfirm = () => {
+        setShowDeleteSuccessModal(false);
+        navigate("/");
+    };
+
+    const handleSaveSuccessConfirm = () => {
+        setShowSaveSuccessModal(false);
+        window.location.reload();
     };
 
     if (isLoading) {
@@ -278,7 +292,6 @@ function FundraiserPage() {
                         </div>
                     </div>
 
-                    
                     {!fundraiser.is_open && (
                         <p className="fundraiser-status-message">
                             This fundraiser is closed. Donations are no longer accepted.
@@ -409,44 +422,48 @@ function FundraiserPage() {
                 </div>
             </section>
 
-            {showDeleteModal && (
-                <div className="fundraiser-modal-overlay" onClick={handleCloseModal}>
-                    <div
-                        className="fundraiser-modal"
-                        onClick={(event) => event.stopPropagation()}
-                    >
-                        <h2 className="fundraiser-modal-title">Delete fundraiser?</h2>
-                        <p className="fundraiser-modal-text">
-                            This fundraiser will be removed from public view, but it can
-                            still be restored later from the backend.
-                        </p>
+            <Modal
+                isOpen={showDeleteModal}
+                type="warning"
+                title="Delete fundraiser?"
+                message={[
+                    "This fundraiser will be removed from public view.",
+                    "It can be restored by a site administrator if necessary.",
+                    deleteError ? `Error: ${deleteError}` : "",
+                ].filter(Boolean)}
+                confirmText={isDeleting ? "Deleting..." : "Yes, delete"}
+                cancelText="Cancel"
+                onConfirm={handleConfirmDelete}
+                onCancel={handleCloseModal}
+                onClose={handleCloseModal}
+                isProcessing={isDeleting}
+            />
 
-                        {deleteError && (
-                            <p className="fundraiser-modal-error">{deleteError}</p>
-                        )}
+            <Modal
+                isOpen={showDeleteSuccessModal}
+                type="success"
+                title="Fundraiser deleted"
+                message={[
+                    "The fundraiser has been deleted successfully.",
+                    "You will now return to the initiatives list.",
+                ]}
+                confirmText="Go to list"
+                onConfirm={handleDeleteSuccessConfirm}
+                onClose={handleDeleteSuccessConfirm}
+            />
 
-                        <div className="fundraiser-modal-actions">
-                            <button
-                                type="button"
-                                className="fundraiser-modal-cancel"
-                                onClick={handleCloseModal}
-                                disabled={isDeleting}
-                            >
-                                Cancel
-                            </button>
-
-                            <button
-                                type="button"
-                                className="fundraiser-modal-confirm"
-                                onClick={handleConfirmDelete}
-                                disabled={isDeleting}
-                            >
-                                {isDeleting ? "Deleting..." : "Yes, delete"}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <Modal
+                isOpen={showSaveSuccessModal}
+                type="success"
+                title="Changes saved"
+                message={[
+                    "The fundraiser has been updated successfully.",
+                    "The page will now refresh.",
+                ]}
+                confirmText="Refresh page"
+                onConfirm={handleSaveSuccessConfirm}
+                onClose={handleSaveSuccessConfirm}
+            />
         </main>
     );
 }

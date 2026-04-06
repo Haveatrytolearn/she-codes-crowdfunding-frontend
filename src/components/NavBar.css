@@ -82,6 +82,7 @@ body {
     text-decoration: none;
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
     font-weight: 700;
+    letter-spacing: 0.2px;
     font-size: 1rem;
     color: var(--color-text);
 
@@ -89,7 +90,7 @@ body {
     border-radius: 999px;
     background-color: rgba(240, 255, 245, 0.96);
 
-    /* вот главная мягкая тень вокруг кнопки */
+    /* main shadow around the button */
     box-shadow:
         0 2px 8px rgba(31, 42, 31, 0.06),
         0 0 0 1px rgba(255, 255, 255, 0.45) inset,
@@ -128,8 +129,8 @@ body {
 .profile-button {
     background: linear-gradient(180deg, #edf4ed 0%, #e7f0e8 100%);
     border-color: rgba(143, 161, 145, 0.72);
-    color: #2f3a2f;
-    font-weight: 800;
+    color: var(--color-text);
+    font-weight: 700;
 
     box-shadow:
         0 2px 8px rgba(31, 42, 31, 0.06),
@@ -149,6 +150,33 @@ body {
 
 .profile-button:focus-visible {
     outline: 3px solid rgba(188, 215, 193, 0.6);
+    outline-offset: 3px;
+}
+
+.admin-button {
+    background: linear-gradient(180deg, #eafff2 0%, #dffbe8 100%);
+    border-color: rgba(106, 239, 159, 0.9);
+    color: var(--color-text);
+    font-weight: 700;
+
+    box-shadow:
+        0 2px 8px rgba(31, 42, 31, 0.06),
+        0 0 0 1px rgba(240, 255, 245, 0.9) inset,
+        0 0 16px rgba(106, 239, 159, 0.35);
+}
+
+.admin-button:hover {
+    background: linear-gradient(180deg, #f2fff7 0%, #e6fcef 100%);
+    border-color: rgba(106, 239, 159, 1);
+
+    box-shadow:
+        0 4px 12px rgba(31, 42, 31, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.95) inset,
+        0 0 20px rgba(106, 239, 159, 0.5);
+}
+
+.admin-button:focus-visible {
+    outline: 3px solid rgba(106, 239, 159, 0.6);
     outline-offset: 3px;
 }
 

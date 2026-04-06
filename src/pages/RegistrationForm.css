@@ -190,6 +190,66 @@
     outline-offset: 3px;
 }
 
+.registration-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(31, 42, 31, 0.32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 1000;
+}
+
+.registration-modal {
+    width: 100%;
+    max-width: 460px;
+    padding: 28px;
+    border-radius: 28px;
+    border: 1.5px solid rgba(31, 42, 31, 0.38);
+    background: linear-gradient(180deg, #ece7e7 0%, #f9fff6 100%);
+    box-shadow: 0 10px 22px rgba(31, 42, 31, 0.12);
+    text-align: center;
+}
+
+.registration-modal-title {
+    margin: 0 0 12px;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #243124;
+}
+
+.registration-modal-text {
+    margin: 0 0 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.registration-modal-button {
+    min-width: 200px;
+    height: 44px;
+    padding: 0 20px;
+    border: 2px solid #6aef9f;
+    border-radius: 999px;
+    background: #f6f7d4;
+    color: #1f2a1f;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.registration-modal-button:hover {
+    transform: translateY(-2px);
+    background: #6aef9f;
+    box-shadow: 0 8px 16px rgba(106, 239, 159, 0.24);
+}
+
 @media (max-width: 768px) {
     .registration-shell {
         padding: 18px;

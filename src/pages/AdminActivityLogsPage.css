@@ -1,0 +1,241 @@
+.admin-logs-page {
+    padding: 24px 16px 40px;
+}
+
+.admin-logs-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.admin-logs-card {
+    border: 1.5px solid rgba(31, 42, 31, 0.38);
+    border-radius: 28px;
+    background: linear-gradient(180deg, #ece7e7 0%, #f9fff6 100%);
+    padding: 28px;
+    box-shadow: 0 10px 22px rgba(31, 42, 31, 0.06);
+}
+
+.admin-logs-header {
+    margin-bottom: 24px;
+}
+
+.admin-logs-title {
+    margin: 0 0 8px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2a1f;
+    line-height: 1.2;
+}
+
+.admin-logs-subtitle {
+    margin: 0;
+    color: #556055;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.admin-logs-search-row {
+    margin: 20px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.admin-logs-search-input {
+    flex: 1;
+    min-width: 260px;
+    max-width: 520px;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(106, 239, 159, 0.45);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: var(--color-text);
+    box-shadow:
+        0 2px 8px rgba(31, 42, 31, 0.05),
+        0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+}
+
+.admin-logs-search-input:focus,
+.admin-logs-filter-select:focus {
+    outline: none;
+    border-color: rgba(106, 239, 159, 0.85);
+    box-shadow:
+        0 4px 12px rgba(31, 42, 31, 0.08),
+        0 0 0 3px rgba(106, 239, 159, 0.18);
+}
+
+.admin-logs-filter-select {
+    min-width: 150px;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(106, 239, 159, 0.45);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: var(--color-text);
+    cursor: pointer;
+    box-shadow:
+        0 2px 8px rgba(31, 42, 31, 0.05),
+        0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+}
+
+.admin-logs-search-button,
+.admin-logs-clear-button {
+    padding: 12px 18px;
+    border: 1.5px solid rgba(106, 239, 159, 0.5);
+    border-radius: 999px;
+    background-color: rgba(240, 255, 245, 0.96);
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    cursor: pointer;
+    box-shadow:
+        0 2px 8px rgba(31, 42, 31, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.45) inset,
+        0 0 12px rgba(106, 239, 159, 0.18);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.admin-logs-search-button:hover,
+.admin-logs-clear-button:hover {
+    background-color: #effff4;
+    border-color: rgba(106, 239, 159, 0.72);
+    box-shadow:
+        0 4px 12px rgba(31, 42, 31, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.5) inset,
+        0 0 16px rgba(106, 239, 159, 0.28);
+    transform: translateY(-1px);
+}
+
+.admin-logs-search-info,
+.admin-logs-status-message {
+    margin: 0 0 16px;
+}
+
+.admin-logs-table-wrapper {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 560px;
+    border-radius: 20px;
+    border: 1px solid rgba(31, 42, 31, 0.12);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.admin-logs-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1100px;
+}
+
+.admin-logs-table thead {
+    background: rgba(106, 239, 159, 0.14);
+}
+
+.admin-logs-table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: rgba(106, 239, 159, 0.14);
+    box-shadow: 0 1px 0 rgba(31, 42, 31, 0.08);
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1f2a1f;
+    border-bottom: 1px solid rgba(31, 42, 31, 0.12);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.admin-logs-table td {
+    padding: 16px 18px;
+    font-size: 0.98rem;
+    color: #243124;
+    border-bottom: 1px solid rgba(31, 42, 31, 0.1);
+    vertical-align: middle;
+}
+
+.admin-logs-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-logs-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.admin-logs-table td:nth-child(1),
+.admin-logs-table td:nth-child(7) {
+    text-align: center;
+}
+
+.admin-logs-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.admin-logs-badge.user {
+    background: #eef6ff;
+    color: #245b9a;
+    border: 1.5px solid #9ec0eb;
+}
+
+.admin-logs-badge.fundraiser {
+    background: #eefdf3;
+    color: #1f6a3a;
+    border: 1.5px solid #7ce49f;
+}
+
+.admin-logs-highlight {
+    background: rgba(106, 239, 159, 0.45);
+    color: inherit;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.admin-logs-empty-cell {
+    text-align: center;
+    color: #667066;
+    padding: 28px 18px;
+}
+
+@media (max-width: 700px) {
+    .admin-logs-page {
+        padding: 16px 12px 28px;
+    }
+
+    .admin-logs-shell {
+        padding: 10px;
+    }
+
+    .admin-logs-card {
+        padding: 18px;
+        border-radius: 20px;
+    }
+
+    .admin-logs-title {
+        font-size: 1.6rem;
+    }
+
+    .admin-logs-subtitle {
+        font-size: 0.95rem;
+    }
+}

@@ -13,6 +13,9 @@ import CreatePledgePage from "./pages/CreatePledgePage";
 import AdminUsersPage from "./pages/AdminUsersPage.jsx";
 import AdminUserEditPage from "./pages/AdminUserEditPage.jsx";
 import DeletedUsersPage from "./pages/DeletedUsersPage.jsx";
+import DeletedFundraisersPage from "./pages/DeletedFundraisersPage.jsx";
+import AdminFundraisersPage from "./pages/AdminFundraisersPage";
+import AdminActivityLogsPage from "./pages/AdminActivityLogsPage";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,9 @@ const router = createBrowserRouter([
           { path: "/admin/users", element: <AdminUsersPage /> },
           { path: "/admin/users/:id", element: <AdminUserEditPage /> },
           { path: "/admin/users/deleted", element: <DeletedUsersPage /> },
+          { path: "/admin/fundraisers/deleted", element: <DeletedFundraisersPage />},
+          { path: "/admin/fundraisers", element: <AdminFundraisersPage />},
+          { path: "/activity-logs", element: <AdminActivityLogsPage /> },
       ],
   },
 ]);

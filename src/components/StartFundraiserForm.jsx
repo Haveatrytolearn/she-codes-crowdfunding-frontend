@@ -1,5 +1,8 @@
+import { useState } from "react";
 import useCreateFundraiser from "../hooks/use-create-fundraiser";
+import Modal from "./Modal";
 import "./StartFundraiserForm.css";
+
 
 function StartFundraiserForm({ onSuccess }) {
     const {
@@ -11,25 +14,27 @@ function StartFundraiserForm({ onSuccess }) {
         handleSubmit: submitForm,
     } = useCreateFundraiser();
 
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
     async function handleSubmit(event) {
         try {
             await submitForm(event);
-            if (onSuccess) {
-                setTimeout(() => {
-                    onSuccess();
-                }, 900);
-            }
+            setShowSuccessModal(true);
         } catch (error) {
             console.error("Form submission error:", error);
         }
     }
 
+    function handleSuccessConfirm() {
+        setShowSuccessModal(false);
+
+        if (onSuccess) {
+            onSuccess();
+        }
+    }
+
     return (
         <div className="start-fundraiser-form-wrapper">
-            {successMessage && (
-                <p className="success-message">✓ {successMessage}</p>
-            )}
-
             {errorMessage && (
                 <p className="error-message">✗ {errorMessage}</p>
             )}
@@ -117,6 +122,18 @@ function StartFundraiserForm({ onSuccess }) {
                     </button>
                 </div>
             </form>
+             <Modal
+                isOpen={showSuccessModal}
+                type="success"
+                title="Fundraiser created"
+                message={[
+                    "Your fundraiser has been published successfully.",
+                    "You will now return to the initiatives page.",
+                ]}
+                confirmText="Go to list"
+                onConfirm={handleSuccessConfirm}
+                onClose={handleSuccessConfirm}
+            />
         </div>
     );
 }

@@ -7,6 +7,8 @@ function NavBar() {
   const token =localStorage.getItem("token");
   const isLoggedIn = !!token;
 
+  const isStaff = JSON.parse(localStorage.getItem("is_staff") || "false");
+
   return (
     <div className="site-wrapper">
       <nav className="navbar" aria-label="Main navigation">
@@ -15,6 +17,25 @@ function NavBar() {
         </Link>
         
         <div className="nav-actions">
+          {isLoggedIn && isStaff && (
+            <Link to="/admin/users" className="nav-button admin-button">
+              Manage users
+            </Link>
+          )}
+
+          {isLoggedIn && isStaff && (
+            <Link to="/admin/fundraisers" className="nav-button admin-button">
+              Manage fundraisers
+            </Link>
+          )}
+
+          {isLoggedIn && isStaff && (
+            <Link to="/activity-logs" className="nav-button admin-button">
+              Activity logs
+            </Link>
+          )}
+
+
           {isLoggedIn ? (
             <Link to="/profile" className="nav-button profile-button">
               My profile

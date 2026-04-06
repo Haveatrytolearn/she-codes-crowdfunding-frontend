@@ -1,11 +1,7 @@
-async function getUsers(showDeleted = false, search = "") {
+async function getFundraisers(showDeleted = false, search = "") {
     const token = window.localStorage.getItem("token");
 
-    if (!token) {
-        throw new Error("You must be logged in as admin.");
-    }
-
-    const baseUrl = `${import.meta.env.VITE_API_URL}/users/`;
+    const baseUrl = `${import.meta.env.VITE_API_URL}/fundraisers/`;
     const params = new URLSearchParams();
 
     if (showDeleted) {
@@ -19,15 +15,21 @@ async function getUsers(showDeleted = false, search = "") {
     const queryString = params.toString();
     const url = queryString ? `${baseUrl}?${queryString}` : baseUrl;
 
+    const headers = {
+        "Content-Type": "application/json",
+    };
+
+    if (token) {
+        headers.Authorization = `Token ${token}`;
+    }
+
     const response = await fetch(url, {
         method: "GET",
-        headers: {
-            Authorization: `Token ${token}`,
-        },
+        headers,
     });
 
     if (!response.ok) {
-        const fallbackError = "Error fetching users";
+        const fallbackError = "Error fetching fundraisers";
 
         const data = await response.json().catch(() => {
             throw new Error(fallbackError);
@@ -39,4 +41,4 @@ async function getUsers(showDeleted = false, search = "") {
     return await response.json();
 }
 
-export default getUsers;
+export default getFundraisers;

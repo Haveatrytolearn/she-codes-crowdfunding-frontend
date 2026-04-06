@@ -124,7 +124,7 @@
 .form-group {
     display: grid;
     grid-template-columns: 90px 1fr;
-    align-items: start;
+    align-items: center;
     gap: 16px;
 }
 
@@ -132,7 +132,6 @@
     font-size: 1.05rem;
     font-weight: 500;
     color: var(--color-heading);
-    padding-top: 12px;
 }
 
 .form-group input {

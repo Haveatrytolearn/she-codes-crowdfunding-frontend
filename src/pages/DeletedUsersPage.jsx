@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import getUsers from "../api/get-users";
 import restoreUser from "../api/restore-user";
@@ -10,6 +10,8 @@ function DeletedUsersPage() {
     const [error, setError] = useState("");
     const [actionMessage, setActionMessage] = useState("");
     const [restoringUserId, setRestoringUserId] = useState(null);
+    const [searchInput, setSearchInput] = useState("");
+    const [search, setSearch] = useState("");
 
     const navigate = useNavigate();
     const isAdmin = window.localStorage.getItem("is_staff") === "true";
@@ -21,8 +23,11 @@ function DeletedUsersPage() {
         }
 
         async function loadDeletedUsers() {
+            setIsLoading(true);
+            setError("");
+
             try {
-                const data = await getUsers(true);
+                const data = await getUsers(true, search);
                 setUsers(data);
             } catch (err) {
                 setError(err.message);
@@ -32,7 +37,7 @@ function DeletedUsersPage() {
         }
 
         loadDeletedUsers();
-    }, [isAdmin, navigate]);
+    }, [isAdmin, navigate, search]);
 
     async function handleRestore(userId) {
         setError("");
@@ -48,6 +53,63 @@ function DeletedUsersPage() {
         } finally {
             setRestoringUserId(null);
         }
+    }
+
+    function handleSearch() {
+        setSearch(searchInput.trim());
+    }
+
+    function handleClear() {
+        setSearchInput("");
+        setSearch("");
+    }
+
+    function userMatchesSearch(user, searchTerm) {
+        if (!searchTerm) return true;
+
+        const normalizedSearch = searchTerm.toLowerCase();
+
+        const searchableFields = [
+            user.username,
+            user.first_name,
+            user.last_name,
+            user.email,
+        ];
+
+        return searchableFields.some((field) =>
+            String(field || "").toLowerCase().includes(normalizedSearch)
+        );
+    }
+
+    const filteredUsers = useMemo(() => {
+        return users.filter((user) => userMatchesSearch(user, search));
+    }, [users, search]);
+
+    function highlightMatch(text) {
+        if (!text) return "—";
+        if (!search) return text;
+
+        const safeText = String(text);
+        const lowerText = safeText.toLowerCase();
+        const lowerSearch = search.toLowerCase();
+
+        const matchIndex = lowerText.indexOf(lowerSearch);
+
+        if (matchIndex === -1) {
+            return safeText;
+        }
+
+        const before = safeText.slice(0, matchIndex);
+        const match = safeText.slice(matchIndex, matchIndex + search.length);
+        const after = safeText.slice(matchIndex + search.length);
+
+        return (
+            <>
+                {before}
+                <mark className="deleted-users-highlight">{match}</mark>
+                {after}
+            </>
+        );
     }
 
     if (isLoading) {
@@ -70,6 +132,45 @@ function DeletedUsersPage() {
                             Back to users
                         </Link>
                     </div>
+
+                    <div className="deleted-users-search-row">
+                        <input
+                            type="text"
+                            value={searchInput}
+                            onChange={(event) => setSearchInput(event.target.value)}
+                            onKeyDown={(event) => {
+                                if (event.key === "Enter") {
+                                    handleSearch();
+                                }
+                            }}
+                            placeholder="Search deleted users by username, email, first name or last name"
+                            className="deleted-users-search-input"
+                        />
+
+                        <button
+                            type="button"
+                            className="deleted-users-search-button"
+                            onClick={handleSearch}
+                        >
+                            Search
+                        </button>
+
+                        <button
+                            type="button"
+                            className="deleted-users-clear-button"
+                            onClick={handleClear}
+                        >
+                            Clear
+                        </button>
+                    </div>
+
+                    {search && (
+                        <p className="deleted-users-search-info">
+                            Found <strong>{filteredUsers.length}</strong>{" "}
+                            {filteredUsers.length === 1 ? "user" : "users"} for{" "}
+                            <strong>"{search}"</strong>
+                        </p>
+                    )}
 
                     {error && (
                         <p className="deleted-users-status-message error">
@@ -99,14 +200,14 @@ function DeletedUsersPage() {
                             </thead>
 
                             <tbody>
-                                {users.length > 0 ? (
-                                    users.map((user) => (
+                                {filteredUsers.length > 0 ? (
+                                    filteredUsers.map((user) => (
                                         <tr key={user.id}>
                                             <td>{user.id}</td>
-                                            <td>{user.username || "—"}</td>
-                                            <td>{user.first_name || "—"}</td>
-                                            <td>{user.last_name || "—"}</td>
-                                            <td>{user.email || "—"}</td>
+                                            <td>{highlightMatch(user.username)}</td>
+                                            <td>{highlightMatch(user.first_name)}</td>
+                                            <td>{highlightMatch(user.last_name)}</td>
+                                            <td>{highlightMatch(user.email)}</td>
                                             <td>
                                                 <span className="deleted-users-badge inactive">
                                                     Inactive
