@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import getUser from "../api/get-user";
 import updateUser from "../api/put-user";
 import deleteUser from "../api/delete-user";
+import Modal from "../components/Modal";
 
 import "./AdminUserEditPage.css";
 
@@ -23,6 +24,9 @@ function AdminUserEditPage() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
 
@@ -83,18 +87,30 @@ function AdminUserEditPage() {
         }
     }
 
-    async function handleDelete() {
-        const confirmDelete = window.confirm(
-            "Are you sure you want to delete this user?"
-        );
+    function handleDeleteClick() {
+        setError("");
+        setShowDeleteModal(true);
+    }
 
-        if (!confirmDelete) return;
+    function handleCloseDeleteModal() {
+        if (!isDeleting) {
+            setShowDeleteModal(false);
+        }
+    }
+
+    async function handleConfirmDelete() {
+        setError("");
+        setIsDeleting(true);
 
         try {
             await deleteUser(id);
+            setShowDeleteModal(false);
             navigate("/admin/users");
         } catch (err) {
             setError(err.message);
+            setShowDeleteModal(false);
+        } finally {
+            setIsDeleting(false);
         }
     }
 
@@ -102,14 +118,13 @@ function AdminUserEditPage() {
         return <p className="admin-user-status">Loading...</p>;
     }
 
-    if (error) {
+    if (error && !user) {
         return <p className="admin-user-status">Error: {error}</p>;
     }
 
     return (
         <main className="admin-user-page">
             <div className="admin-user-card">
-
                 <div className="admin-user-header">
                     <button
                         className="admin-user-back-button"
@@ -117,7 +132,6 @@ function AdminUserEditPage() {
                     >
                         ← Back to users
                     </button>
-
                 </div>
 
                 <h1>Edit user</h1>
@@ -126,7 +140,6 @@ function AdminUserEditPage() {
                 {error && <p className="admin-user-error">{error}</p>}
 
                 <form onSubmit={handleSubmit} className="admin-user-form">
-
                     <label>
                         Username
                         <input
@@ -175,20 +188,20 @@ function AdminUserEditPage() {
 
                     <div className="admin-user-buttons">
                         <button type="submit" disabled={isSaving}>
-                            Save changes
+                            {isSaving ? "Saving..." : "Save changes"}
                         </button>
 
                         <button
                             type="button"
                             className="delete"
-                            onClick={handleDelete}
+                            onClick={handleDeleteClick}
+                            disabled={isDeleting}
                         >
                             Delete user
                         </button>
                     </div>
                 </form>
 
-                {/* 🔥 CHANGE LOGS */}
                 {user.change_logs && user.change_logs.length > 0 && (
                     <div className="admin-user-logs">
                         <h2>Change history</h2>
@@ -198,7 +211,8 @@ function AdminUserEditPage() {
                                     <strong>{log.field_name}</strong>: "{log.old_value}" → "{log.new_value}"
                                     <br />
                                     <em>
-                                        by {log.changed_by_username} at {new Date(log.changed_at).toLocaleString()}
+                                        by {log.changed_by_username} at{" "}
+                                        {new Date(log.changed_at).toLocaleString()}
                                     </em>
                                 </li>
                             ))}
@@ -206,6 +220,22 @@ function AdminUserEditPage() {
                     </div>
                 )}
             </div>
+
+            <Modal
+                isOpen={showDeleteModal}
+                type="warning"
+                title="Delete user?"
+                message={[
+                    "Are you sure you want to delete this user?",
+                    "The account can be restored by a site administrator if necessary.",
+                ]}
+                confirmText={isDeleting ? "Deleting..." : "Yes, delete"}
+                cancelText="Cancel"
+                onConfirm={handleConfirmDelete}
+                onCancel={handleCloseDeleteModal}
+                onClose={handleCloseDeleteModal}
+                isProcessing={isDeleting}
+            />
         </main>
     );
 }
