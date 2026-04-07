@@ -7,7 +7,7 @@ This project is a web platform that allows registered users to create fundraisin
 
 #### Screenshots
 ##### Homepage (Guest User)
-
+![Homepage-guest](crowdfunding-frontend/screenshots/Homepage-guest.jpg)
 ##### Homepage (Authenticated User)
 
 ##### Homepage (Admin)
