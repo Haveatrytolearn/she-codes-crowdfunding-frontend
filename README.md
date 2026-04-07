@@ -7,21 +7,27 @@ This project is a web platform that allows registered users to create fundraisin
 
 #### Screenshots
 ##### Homepage (Guest User)
-![Homepage-guest](crowdfunding-frontend/screenshots/Homepage-guest.jpg)
+![Homepage-guest](./screenshots/Homepage-guest.jpg)
 ##### Homepage (Authenticated User)
+![Homepage-authenticated](./screenshots/Homepage-authenticated.jpg)
 
 ##### Homepage (Admin)
+![Homepage-admin](./screenshots/Homepage-admin.jpg)
 
 ##### Fundraiser Details Page
+![Fundraiser-details](./screenshots/Fundraiser-details.jpg)
 
 ##### Donation Form
+![Donation-form](./screenshots/Donation-form.jpg)
 
 ##### Admin – Manage Users
-
+![Admin-users](./screenshots/Admin-users.jpg)
 
 ##### Admin – Manage Fundraisers
+![Admin-fundraisers](./screenshots/Admin-fundraisers.jpg)
 
 ##### Admin – Activity Logs
+![Admin-activity-logs](./screenshots/Admin-activity-logs.jpg)
 
 
 #### Intended Audience
