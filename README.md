@@ -8,7 +8,7 @@ This project is a web platform that allows registered users to create fundraisin
 #### Screenshots
 
 ##### Homepage (Guest User)
-![homepage-guest](./screenshots/homepage-guest.jpg)
+![Homepage-guest](./screenshots/Homepage-guest.jpg)
 
 ##### Homepage (User)
 ![Homepage-authenticated](./screenshots/homepage-user.jpg)
