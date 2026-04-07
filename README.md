@@ -6,8 +6,10 @@
 This project is a web platform that allows registered users to create fundraising initiatives for various causes and support other users’ initiatives through monetary donations. Users can make donations in any amount, provided that the total pledged amount does not exceed the fundraising target.
 
 #### Screenshots
+
 ##### Homepage (Guest User)
 ![homepage-guest](./screenshots/homepage-guest.jpg)
+
 ##### Homepage (User)
 ![Homepage-authenticated](./screenshots/homepage-user.jpg)
 
