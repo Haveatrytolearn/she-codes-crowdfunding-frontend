@@ -7,7 +7,7 @@ This project is a web platform that allows registered users to create fundraisin
 
 #### Screenshots
 ##### Homepage (Guest User)
-![Homepage-guest](./screenshots/homepage-guest.jpg)
+![homepage-guest](./screenshots/homepage-guest.jpg)
 ##### Homepage (User)
 ![Homepage-authenticated](./screenshots/homepage-user.jpg)
 
@@ -18,13 +18,13 @@ This project is a web platform that allows registered users to create fundraisin
 ![Fundraiser-details](./screenshots/fundraiser-guest.jpg)
 
 ##### Fundraiser Details Page (Admin, Owner)
-![Fundraiser-admin, owner](./screenshots/fundraiser-admin,%owner.jpg)
+![Fundraiser-admin, owner](./screenshots/fundraiser-admin-owner.jpg)
 
 ##### Fundraiser Create Page (Admin, Registered User)
-![Fundraiser_create- admin, owner](./screenshots/fundraiser_create-admin,%owner.jpg)
+![Fundraiser_create- admin, owner](./screenshots/fundraiser-create-admin-owner.jpg)
 
 ##### Fundraiser Edit Page (Admin, Owner)
-![Fundraiser_edit- admin, owner](./screenshots/fundraiser_edit-admin%and%owner.jpg)
+![Fundraiser_edit- admin, owner](./screenshots/fundraiser-edit-admin-owner.jpg)
 
 ##### Donation Form
 ![Donation-form](./screenshots/donation-page.jpg)
