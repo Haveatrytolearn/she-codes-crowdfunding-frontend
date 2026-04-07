@@ -7,7 +7,7 @@ function NavBar() {
   const token =localStorage.getItem("token");
   const isLoggedIn = !!token;
 
-  const isStaff = JSON.parse(localStorage.getItem("is_staff") || "false");
+  const isStaff = isLoggedIn && JSON.parse(localStorage.getItem("is_staff") || "false");
 
   return (
     <div className="site-wrapper">

@@ -126,8 +126,7 @@ function ProfilePage() {
     }
 
     function handleLogout() {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user_id");
+        localStorage.clear();
         navigate("/");
         window.location.reload();
     }
