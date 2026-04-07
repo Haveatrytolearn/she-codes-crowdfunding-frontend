@@ -7,27 +7,42 @@ This project is a web platform that allows registered users to create fundraisin
 
 #### Screenshots
 ##### Homepage (Guest User)
-![Homepage-guest](./screenshots/Homepage-guest.jpg)
-##### Homepage (Authenticated User)
-![Homepage-authenticated](./screenshots/Homepage-authenticated.jpg)
+![Homepage-guest](./screenshots/homepage-guest.jpg)
+##### Homepage (User)
+![Homepage-authenticated](./screenshots/homepage-user.jpg)
 
 ##### Homepage (Admin)
-![Homepage-admin](./screenshots/Homepage-admin.jpg)
+![Homepage-admin](./screenshots/homepage-admin.jpg)
 
-##### Fundraiser Details Page
-![Fundraiser-details](./screenshots/Fundraiser-details.jpg)
+##### Fundraiser Details Page (Guest User)
+![Fundraiser-details](./screenshots/fundraiser-guest.jpg)
+
+##### Fundraiser Details Page (Admin, Owner)
+![Fundraiser-admin, owner](./screenshots/fundraiser-admin, owner.jpg)
+
+##### Fundraiser Create Page (Admin, Registered User)
+![Fundraiser_create- admin, owner](./screenshots/fundraiser_create-admin, owner.jpg)
+
+##### Fundraiser Edit Page (Admin, Owner)
+![Fundraiser_edit- admin, owner](./screenshots/fundraiser_edit-admin and owner.jpg)
 
 ##### Donation Form
-![Donation-form](./screenshots/Donation-form.jpg)
+![Donation-form](./screenshots/donation-page.jpg)
 
 ##### Admin – Manage Users
-![Admin-users](./screenshots/Admin-users.jpg)
+![Admin-users](./screenshots/adminpage-users-management.jpg)
+
+##### Admin – Deleted Users
+![Admin-deletedusers](./screenshots/adminpage-deleted-users.jpg)
 
 ##### Admin – Manage Fundraisers
-![Admin-fundraisers](./screenshots/Admin-fundraisers.jpg)
+![Admin-fundraisers](./screenshots/adminpage-fundraisers-management.jpg)
+
+##### Admin – Deleted Fundraisers
+![Admin-deletedfundraisers](./screenshots/adminpage-deleted-fundraisers.jpg)
 
 ##### Admin – Activity Logs
-![Admin-activity-logs](./screenshots/Admin-activity-logs.jpg)
+![Admin-activity-logs](./screenshots/adminpage-activity-logs.jpg)
 
 
 #### Intended Audience
