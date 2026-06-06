@@ -1,5 +1,5 @@
 :root {
-    --font-family-base: 'Rubik', Arial, Helvetica, sans-serif;
+    --font-family-base: "Rubik", Arial, Helvetica, sans-serif;
 
     --color-text: #041208;
     --color-text-soft: #555;
@@ -101,11 +101,15 @@
     width: 100%;
     max-width: 760px;
     display: grid;
-    grid-template-columns: 220px 320px;
-    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
     align-items: start;
-    gap: 44px;
-    margin-top: 6px;
+}
+
+.pledge-column-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .pledge-box {
@@ -148,8 +152,35 @@
 }
 
 .pledge-box input::placeholder,
-.pledge-extra-fields input::placeholder {
+.pledge-box textarea::placeholder {
     color: #8a8a8a;
+}
+
+.pledge-box-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pledge-box-comment textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 12px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-control);
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background: var(--color-surface);
+    box-sizing: border-box;
+    outline: none;
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pledge-box-comment textarea:focus {
+    border-color: var(--color-accent-dark);
+    box-shadow: 0 0 0 4px rgba(106, 239, 159, 0.18);
 }
 
 .pledge-small-row {
@@ -163,41 +194,6 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.pledge-extra-fields {
-    width: 100%;
-    max-width: 760px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: flex-start;
-}
-
-.pledge-extra-fields label {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--color-heading);
-}
-
-.pledge-extra-fields input[type="text"] {
-    width: 100%;
-    height: 44px;
-    padding: 0 12px;
-    border: 1.5px solid var(--color-border);
-    border-radius: var(--radius-control);
-    font-size: 1rem;
-    font-family: inherit;
-    color: var(--color-text);
-    background: var(--color-surface);
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pledge-extra-fields input[type="text"]:focus {
-    border-color: var(--color-accent-dark);
-    box-shadow: 0 0 0 4px rgba(106, 239, 159, 0.18);
 }
 
 .pledge-checkbox {
@@ -217,37 +213,6 @@
     cursor: pointer;
 }
 
-.pledge-submit-button {
-    min-width: 220px;
-    height: 44px;
-    padding: 0 20px;
-    border: 2px solid var(--color-accent);
-    border-radius: 10px;
-    background: var(--color-accent-button);
-    color: var(--color-text);
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.pledge-submit-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    background: var(--color-accent);
-    box-shadow: var(--shadow-hover);
-}
-
-.pledge-submit-button:focus-visible {
-    outline: 3px solid var(--color-accent-dark);
-    outline-offset: 3px;
-}
-
-.pledge-submit-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
 .pledge-error {
     width: 100%;
     max-width: 760px;
@@ -262,8 +227,8 @@
 }
 
 .pledge-box-amount {
-    align-self: start;
-    margin-top: 34px;
+    margin-top: 0;
+    align-self: stretch;
 }
 
 .pledge-box-card {
@@ -278,31 +243,6 @@
     gap: 8px;
 }
 
-.pledge-extra-fields textarea {
-    width: 100%;
-    min-height: 96px;
-    padding: 12px;
-    border: 1.5px solid var(--color-border);
-    border-radius: var(--radius-control);
-    font-size: 1rem;
-    font-family: inherit;
-    color: var(--color-text);
-    background: var(--color-surface);
-    box-sizing: border-box;
-    outline: none;
-    resize: vertical;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pledge-extra-fields textarea:focus {
-    border-color: var(--color-accent-dark);
-    box-shadow: 0 0 0 4px rgba(106, 239, 159, 0.18);
-}
-
-.pledge-extra-fields textarea::placeholder {
-    color: #8a8a8a;
-}
-
 @media (max-width: 900px) {
     .pledge-grid {
         grid-template-columns: 1fr;
@@ -315,12 +255,11 @@
         box-sizing: border-box;
     }
 
-    .pledge-extra-fields {
-        max-width: 420px;
+    .pledge-column-left {
+        gap: 20px;
     }
 
-    .pledge-submit-button {
-        width: 100%;
+    .pledge-error {
         max-width: 420px;
     }
 }
@@ -346,9 +285,7 @@
     }
 
     .pledge-grid,
-    .pledge-extra-fields,
-    .pledge-error,
-    .pledge-submit-button {
+    .pledge-error {
         max-width: 100%;
     }
 

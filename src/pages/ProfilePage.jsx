@@ -4,6 +4,7 @@ import "./ProfilePage.css";
 import putUpdateProfile from "../api/put-update-profile";
 import deleteUser from "../api/delete-user";
 import Modal from "../components/Modal";
+import Button from "../components/Button";
 
 function ProfilePage() {
     const navigate = useNavigate();
@@ -269,25 +270,31 @@ function ProfilePage() {
                         </div>
 
                         <div className="profile-actions">
-                            <button type="submit" className="primary-action" disabled={isSaving}>
+                            <Button 
+                            type="submit" 
+                            variant="primary"
+                            className="app-button--primary" 
+                            disabled={isSaving}>
                                 {isSaving ? "Saving..." : "Submit changes"}
-                            </button>
+                            </Button>
 
-                            <button
+                            <Button
                                 type="button"
-                                className="secondary-action"
+                                variant="secondary"
+                                className="app-button--secondary"
                                 onClick={handleLogout}
                             >
                                 Log out
-                            </button>
+                            </Button>
 
-                            <button
+                            <Button
                                 type="button"
-                                className="danger-action"
+                                variant="danger"
+                                className="app-button--danger"
                                 onClick={handleDeleteAccount}
                             >
                                 Delete my account
-                            </button>
+                            </Button>
                         </div>
                     </form>
                 </section>

@@ -5,6 +5,7 @@ import deleteFundraiser from "../api/delete-fundraiser.js";
 import updateFundraiser from "../api/put-fundraiser.js";
 import Modal from "../components/Modal";
 import "./FundraiserPage.css";
+import Button from "../components/Button";
 
 function FundraiserPage() {
     const { id } = useParams();
@@ -53,18 +54,26 @@ function FundraiserPage() {
 
     const hasDonated = fundraiser?.has_donated ?? false;
     const isOwner = Number(fundraiser?.owner) === Number(currentUserId);
+
+    const token = window.localStorage.getItem("token");
+    const isAuthenticated = !!token;
+
     const isAdmin = window.localStorage.getItem("is_staff") === "true";
     const canEditFundraiser = isOwner || isAdmin;
     const canDeleteFundraiser = isOwner || isAdmin;
+    const hasPledgeDetails = fundraiser?.pledges?.length > 0;
+    const hasNoPledges = Number(fundraiser?.amount_raised) === 0;
+    const canViewPledges = isAuthenticated && (isOwner || isAdmin || hasDonated);
+    const shouldShowPledgesSection =
+        canViewPledges && (hasNoPledges || hasPledgeDetails);
 
-    const handleDonateClick = () => {
+
+    const handleDonateClick = () => { 
         if (!fundraiser.is_open) {
             return;
         }
 
-        const token = window.localStorage.getItem("token");
-
-        if (!token) {
+        if (!isAuthenticated) {
             setAuthMessage("Please log in before making a pledge.");
             return;
         }
@@ -300,75 +309,64 @@ function FundraiserPage() {
 
                     <div className="fundraiser-actions-block">
                         <div className="fundraiser-bottom-row">
-                            <button
-                                type="button"
-                                className="fundraiser-action-button"
+                            <Button
+                                variant="primary"
                                 onClick={handleDonateClick}
                                 disabled={!fundraiser.is_open}
                             >
                                 {fundraiser.is_open ? "Donate" : "Closed"}
-                            </button>
+                            </Button>
 
-                            <span className="fundraiser-divider">/</span>
 
-                            <button
-                                type="button"
-                                className={`fundraiser-donated-pill ${hasDonated ? "active" : ""}`}
+                            <Button
+                                variant="muted"
+                                isActive={hasDonated}
                                 onClick={handleAlreadyDonatedClick}
                                 disabled={!hasDonated}
                             >
                                 Already donated
-                            </button>
+                            </Button>
                         </div>
 
                         {(canEditFundraiser || canDeleteFundraiser) && (
                             <div className="fundraiser-owner-actions-row">
                                 {canEditFundraiser && !isEditing && (
                                     <>
-                                        <button
-                                            type="button"
-                                            className="fundraiser-edit-button"
+                                        <Button
+                                            variant="primary"
                                             onClick={handleEditClick}
                                         >
                                             Edit fundraiser
-                                        </button>
+                                        </Button>
 
                                         {canDeleteFundraiser && (
-                                            <>
-                                                <span className="fundraiser-divider">/</span>
-                                                <button
-                                                    type="button"
-                                                    className="fundraiser-delete-button"
-                                                    onClick={handleDeleteClick}
-                                                >
-                                                    Delete fundraiser
-                                                </button>
-                                            </>
+                                            <Button
+                                                variant="danger"
+                                                onClick={handleDeleteClick}
+                                            >
+                                                Delete fundraiser
+                                            </Button>
                                         )}
                                     </>
                                 )}
 
                                 {canEditFundraiser && isEditing && (
                                     <>
-                                        <button
-                                            type="button"
-                                            className="fundraiser-save-button"
+                                        <Button
+                                            variant="primary"
                                             onClick={handleSaveChanges}
                                             disabled={isSaving}
                                         >
                                             {isSaving ? "Saving..." : "Save changes"}
-                                        </button>
+                                        </Button>
 
-                                        <span className="fundraiser-divider">/</span>
-
-                                        <button
-                                            type="button"
-                                            className="fundraiser-cancel-button"
+                                        <Button
+                                            variant="secondary"
                                             onClick={handleCancelEdit}
                                             disabled={isSaving}
                                         >
                                             Cancel
-                                        </button>
+                                        </Button>
                                     </>
                                 )}
                             </div>
@@ -383,15 +381,13 @@ function FundraiserPage() {
                         <p className="fundraiser-status-message">{authMessage}</p>
                     )}
 
-                    {(fundraiser.amount_raised === 0 || fundraiser.pledges?.length > 0) && (
+                    {shouldShowPledgesSection && (
                         <section className="pledges-section" aria-labelledby="pledges-heading">
                             <h2 id="pledges-heading" className="pledges-title">
                                 Pledges
                             </h2>
 
-                            {fundraiser.amount_raised === 0 ? (
-                                <p className="no-pledges">No pledges yet.</p>
-                            ) : (
+                            {hasPledgeDetails ? (
                                 <ul className="pledges-list">
                                     {fundraiser.pledges.map((pledge) => (
                                         <li key={pledge.id ?? `${pledge.supporter}-${pledge.amount}`}>
@@ -399,6 +395,8 @@ function FundraiserPage() {
                                         </li>
                                     ))}
                                 </ul>
+                            ) : (
+                                <p className="no-pledges">No pledges yet.</p>
                             )}
                         </section>
                     )}

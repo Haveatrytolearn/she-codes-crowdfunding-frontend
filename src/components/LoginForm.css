@@ -167,40 +167,19 @@
 }
 
 .login-submit-button {
-    min-width: 220px;
-    height: 44px;
-    padding: 0 20px;
-    border: 2px solid #6aef9f;
-    border-radius: 10px;
-    background: #f6f7d4;
-    color: #1f2a1f;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
     align-self: center;
+    width: fit-content;
     margin-top: 12px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.login-submit-button:hover {
-    transform: translateY(-2px);
-    background: #6aef9f;
-    box-shadow: 0 8px 18px rgba(106, 239, 159, 0.24);
-}
-
-.login-submit-button:focus-visible {
-    outline: 3px solid var(--color-accent-dark);
-    outline-offset: 3px;
 }
 
 .signup-row {
-    margin-top: 24px;
-    padding-top: 18px;
+    margin-top: 0px;
+    padding-top: 12px;
     border-top: 1px solid rgba(31, 42, 31, 0.12);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 .signup-text {
@@ -208,35 +187,6 @@
     color: var(--color-text-soft);
 }
 
-.signup-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: fit-content;
-    min-width: 220px;
-    height: 44px;
-    padding: 0 20px;
-    border: 1.5px solid rgba(31, 42, 31, 0.4);
-    border-radius: 10px;
-    background: var(--color-surface);
-    color: var(--color-heading);
-    text-decoration: none;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.signup-button:hover {
-    transform: translateY(-2px);
-    background: var(--color-accent-soft);
-    box-shadow: 0 8px 18px rgba(106, 239, 159, 0.18);
-}
-
-.signup-button:focus-visible {
-    outline: 3px solid var(--color-accent-dark);
-    outline-offset: 3px;
-}
 
 @media (max-width: 768px) {
     .login-shell {

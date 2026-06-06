@@ -118,8 +118,11 @@
     font-size: 0.95rem;
 }
 
-.register-button {
+/*.register-button {
     min-width: 220px;
+    width: fit-content;
+    align-self: center;
+    margin-top: 20px;
     height: 44px;
     padding: 0 20px;
     border: 2px solid #6aef9f;
@@ -144,7 +147,7 @@
 .register-button:focus-visible {
     outline: 3px solid var(--color-accent-dark);
     outline-offset: 3px;
-}
+}*/
 
 .login-row {
     margin-top: 24px;
@@ -160,9 +163,23 @@
     color: var(--color-text-soft);
 }
 
-.login-button {
+.button-row {
+    display: flex;
+    justify-content: center; /* или flex-start */
+    margin-top: 20px;
+}
+
+.login-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+
+/*.login-button {
     display: inline-flex;
-    align-items: center;
+    align-self: flex-start;
     justify-content: center;
     width: fit-content;
     min-width: 220px;
@@ -188,7 +205,7 @@
 .login-button:focus-visible {
     outline: 3px solid var(--color-accent-dark);
     outline-offset: 3px;
-}
+}*/
 
 .registration-modal-overlay {
     position: fixed;

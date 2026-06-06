@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import postLogin from "../api/post-login.js";
 import "./LoginForm.css";
+import Button from "../components/Button";
 
 function LoginForm() {
     const navigate = useNavigate(); 
@@ -99,18 +100,25 @@ function LoginForm() {
                         </p>
                     )}
 
-                    <button type="submit" className="login-submit-button">
+                    <Button 
+                    type="submit" 
+                    variant="primary"
+                    className="login-submit-button">
                         Log in
-                    </button>
+                    </Button>
                 </form>
 
                 <div className="signup-row">
                     <p className="signup-text">
                         Don't have an account yet?
                     </p>
-                    <Link to="/signup" className="signup-button">
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        onClick={() => navigate("/signup")}
+                    >
                         Sign up
-                    </Link>
+                    </Button>
                 </div>
             </section>
         </main>

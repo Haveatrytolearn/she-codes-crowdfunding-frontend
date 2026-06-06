@@ -3,6 +3,7 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import postPledge from "../api/post-pledge.js";
 import Modal from "../components/Modal";
 import "./PledgeForm.css";
+import Button from "../components/Button";
 
 function PledgeForm({ fundraiserId }) {
     const navigate = useNavigate();
@@ -280,22 +281,47 @@ function PledgeForm({ fundraiserId }) {
 
                     <form className="pledge-form" onSubmit={handleSubmit} noValidate>
                         <div className="pledge-grid">
-                            <div className="pledge-box pledge-box-amount">
-                                <div className="pledge-field-group">
-                                    <label htmlFor="amount">Donation amount</label>
-                                    <input
-                                        type="number"
-                                        id="amount"
-                                        min="1"
-                                        placeholder="Enter amount in AUD"
-                                        value={formData.amount}
-                                        onChange={handleChange}
-                                        required
-                                        className={fieldErrors.amount ? "input-error" : ""}
-                                    />
-                                    {fieldErrors.amount && (
-                                        <p className="field-error">{fieldErrors.amount}</p>
-                                    )}
+                            <div className="pledge-column pledge-column-left">
+                                <div className="pledge-box pledge-box-amount">
+                                    <div className="pledge-field-group">
+                                        <label htmlFor="amount">Donation amount</label>
+                                        <input
+                                            type="number"
+                                            id="amount"
+                                            min="1"
+                                            placeholder="Enter amount in AUD"
+                                            value={formData.amount}
+                                            onChange={handleChange}
+                                            required
+                                            className={fieldErrors.amount ? "input-error" : ""}
+                                        />
+                                        {fieldErrors.amount && (
+                                            <p className="field-error">{fieldErrors.amount}</p>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="pledge-box pledge-box-comment">
+                                    <div className="pledge-field-group">
+                                        <label htmlFor="comment">Comment</label>
+                                        <textarea
+                                            id="comment"
+                                            placeholder="Add a note with your pledge"
+                                            value={formData.comment}
+                                            onChange={handleChange}
+                                            rows="5"
+                                        />
+                                    </div>
+
+                                    <label className="pledge-checkbox" htmlFor="anonymous">
+                                        <input
+                                            type="checkbox"
+                                            id="anonymous"
+                                            checked={formData.anonymous}
+                                            onChange={handleChange}
+                                        />
+                                        Donate anonymously
+                                    </label>
                                 </div>
                             </div>
 
@@ -321,7 +347,9 @@ function PledgeForm({ fundraiserId }) {
                                     <div className="pledge-label-row">
                                         <label htmlFor="cardNumber">Card Number</label>
                                         {cardType && (
-                                            <span className={`card-badge card-badge-${cardType.toLowerCase()}`}>
+                                            <span
+                                                className={`card-badge card-badge-${cardType.toLowerCase()}`}
+                                            >
                                                 {cardType}
                                             </span>
                                         )}
@@ -389,36 +417,9 @@ function PledgeForm({ fundraiserId }) {
                             </div>
                         </div>
 
-                        <div className="pledge-extra-fields">
-                            <div className="pledge-field-group">
-                                <label htmlFor="comment">Comment</label>
-                                <textarea
-                                    id="comment"
-                                    placeholder="Add a note with your pledge"
-                                    value={formData.comment}
-                                    onChange={handleChange}
-                                    rows="3"
-                                />
-                            </div>
-
-                            <label className="pledge-checkbox" htmlFor="anonymous">
-                                <input
-                                    type="checkbox"
-                                    id="anonymous"
-                                    checked={formData.anonymous}
-                                    onChange={handleChange}
-                                />
-                                Donate anonymously
-                            </label>
-                        </div>
-
-                        <button
-                            type="submit"
-                            className="pledge-submit-button"
-                            disabled={isSubmitting}
-                        >
+                        <Button type="submit" variant="primary" disabled={isSubmitting}>
                             {isSubmitting ? "Submitting..." : "Submit donation"}
-                        </button>
+                        </Button>
 
                         {errorMessage && <p className="pledge-error">{errorMessage}</p>}
                     </form>

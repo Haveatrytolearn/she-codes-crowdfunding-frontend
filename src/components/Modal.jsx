@@ -1,4 +1,6 @@
+import Button from "./Button";
 import "./Modal.css";
+
 
 function Modal({
     isOpen,
@@ -34,24 +36,26 @@ function Modal({
 
                 <div className="app-modal-actions">
                     {cancelText && (
-                        <button
+                        <Button
                             type="button"
-                            className="app-modal-button app-modal-button-secondary"
+                            variant="secondary"
+                            className="app-modal-button"
                             onClick={onCancel || onClose}
                             disabled={isProcessing}
                         >
                             {cancelText}
-                        </button>
+                        </Button>
                     )}
 
-                    <button
+                    <Button
                         type="button"
+                        variant="primary"
                         className="app-modal-button"
                         onClick={onConfirm || onClose}
                         disabled={isProcessing}
                     >
                         {confirmText}
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

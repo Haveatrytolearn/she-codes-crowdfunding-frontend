@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./RegistrationForm.css";
 import postRegister from "../api/post-register";
 import Modal from "../components/Modal";
+import Button from "../components/Button";
 
 function RegistrationForm() {
     const navigate = useNavigate();
@@ -129,18 +130,31 @@ function RegistrationForm() {
                         />
                     </div>
 
-                    <button type="submit" className="register-button" disabled={isLoading}>
-                        {isLoading ? "Registering..." : "Register"}
-                    </button>
+                    <div className="button-row">
+                        <Button 
+                        type="submit" 
+                        variant="primary"
+                        disabled={isLoading}>
+                            {isLoading ? "Registering..." : "Register"}
+                        </Button>
+                    </div>
                 </form>
 
                 <div className="login-row">
                     <p className="login-link-text">
                         Already have an account?
                     </p> 
-                    <Link to="/login" className="login-button">
+
+                    
+                    <div className="login-row">
+                        <Button
+                            type="button"
+                            variant="secondary"
+                            onClick={() => navigate("/login")}
+                        >
                             Log in
-                    </Link>  
+                        </Button>
+                    </div>
                 </div>
             </section>
 
