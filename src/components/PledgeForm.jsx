@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate, Navigate } from "react-router-dom";
 import postPledge from "../api/post-pledge.js";
+import useFundraiser from "../hooks/use-fundraiser";
 import Modal from "../components/Modal";
 import "./PledgeForm.css";
 import Button from "../components/Button";
@@ -8,6 +9,7 @@ import Button from "../components/Button";
 function PledgeForm({ fundraiserId }) {
     const navigate = useNavigate();
     const token = window.localStorage.getItem("token");
+    const { fundraiser, isLoading, error } = useFundraiser(fundraiserId);
 
     const [formData, setFormData] = useState({
         amount: "",
@@ -30,6 +32,12 @@ function PledgeForm({ fundraiserId }) {
     const [errorMessage, setErrorMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+    const amountRaised = Number(fundraiser?.amount_raised) || 0;
+    const goal = Number(fundraiser?.goal) || 0;
+    const remainingAmount = Math.max(goal - amountRaised, 0);
+    const isFunded = amountRaised >= goal;
+    const isDonationClosed = fundraiser && (!fundraiser.is_open || isFunded);
 
     function getCardType(cardNumber) {
         const digits = cardNumber.replace(/\D/g, "");
@@ -85,6 +93,10 @@ function PledgeForm({ fundraiserId }) {
     function validateAmount(value) {
         if (!value) return "Please enter a donation amount.";
         if (Number(value) < 1) return "Amount must be at least 1 AUD.";
+        if (isDonationClosed) return "This fundraiser is closed.";
+        if (remainingAmount > 0 && Number(value) > remainingAmount) {
+            return `Donation amount cannot be more than ${remainingAmount} AUD.`;
+        }
         return "";
     }
 
@@ -243,6 +255,11 @@ function PledgeForm({ fundraiserId }) {
             return;
         }
 
+        if (isDonationClosed) {
+            setErrorMessage("This fundraiser is closed. Donations are no longer accepted.");
+            return;
+        }
+
         setIsSubmitting(true);
 
         try {
@@ -263,6 +280,35 @@ function PledgeForm({ fundraiserId }) {
 
     if (!token) {
         return <Navigate to="/login" replace />;
+    }
+
+    if (isLoading) {
+        return <p className="fundraiser-status-message">Loading fundraiser...</p>;
+    }
+
+    if (error) {
+        return <p className="fundraiser-status-message">Error: {error.message}</p>;
+    }
+
+    if (isDonationClosed) {
+        return (
+            <main className="pledge-page">
+                <section className="pledge-shell">
+                    <div className="pledge-card">
+                        <div className="pledge-top-row">
+                            <Link to={`/fundraiser/${fundraiserId}`} className="pledge-back-link">
+                                в†ђ Back to fundraiser
+                            </Link>
+                        </div>
+
+                        <h1 className="pledge-title">Donations closed</h1>
+                        <p className="pledge-error">
+                            This fundraiser is closed. Donations are no longer accepted.
+                        </p>
+                    </div>
+                </section>
+            </main>
+        );
     }
 
     const cardType = getCardType(formData.cardNumber);
@@ -289,6 +335,7 @@ function PledgeForm({ fundraiserId }) {
                                             type="number"
                                             id="amount"
                                             min="1"
+                                            max={remainingAmount || undefined}
                                             placeholder="Enter amount in AUD"
                                             value={formData.amount}
                                             onChange={handleChange}

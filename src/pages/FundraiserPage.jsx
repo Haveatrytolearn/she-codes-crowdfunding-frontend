@@ -61,6 +61,9 @@ function FundraiserPage() {
     const isAdmin = window.localStorage.getItem("is_staff") === "true";
     const canEditFundraiser = isOwner || isAdmin;
     const canDeleteFundraiser = isOwner || isAdmin;
+    const isFunded =
+        Number(fundraiser?.amount_raised) >= Number(fundraiser?.goal);
+    const isDonationClosed = !fundraiser?.is_open || isFunded;
     const hasPledgeDetails = fundraiser?.pledges?.length > 0;
     const hasNoPledges = Number(fundraiser?.amount_raised) === 0;
     const canViewPledges = isAuthenticated && (isOwner || isAdmin || hasDonated);
@@ -69,7 +72,7 @@ function FundraiserPage() {
 
 
     const handleDonateClick = () => { 
-        if (!fundraiser.is_open) {
+        if (isDonationClosed) {
             return;
         }
 
@@ -269,10 +272,10 @@ function FundraiserPage() {
                                     ) : (
                                         <span
                                             className={`fundraiser-status-badge ${
-                                                fundraiser.is_open ? "open" : "closed"
+                                                isDonationClosed ? "closed" : "open"
                                             }`}
                                         >
-                                            {fundraiser.is_open ? "Open" : "Closed"}
+                                            {isDonationClosed ? "Closed" : "Open"}
                                         </span>
                                     )}
                                 </p>
@@ -301,7 +304,7 @@ function FundraiserPage() {
                         </div>
                     </div>
 
-                    {!fundraiser.is_open && (
+                    {isDonationClosed && (
                         <p className="fundraiser-status-message">
                             This fundraiser is closed. Donations are no longer accepted.
                         </p>
@@ -312,9 +315,9 @@ function FundraiserPage() {
                             <Button
                                 variant="primary"
                                 onClick={handleDonateClick}
-                                disabled={!fundraiser.is_open}
+                                disabled={isDonationClosed}
                             >
-                                {fundraiser.is_open ? "Donate" : "Closed"}
+                                {isDonationClosed ? "Closed" : "Donate"}
                             </Button>
 
 
